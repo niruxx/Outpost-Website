@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en" data-theme="outpost" data-wallpaper="animated">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outpost — one self-hosted panel for your servers, apps &amp; games</title>
+    <meta
+      name="description"
+      content="Outpost is a self-hosted control panel for Minecraft and Steam game servers, one-click web apps, Portainer, any Docker or Podman image and your own scripts — sandboxed, metered and shareable from your browser."
+    />
+    <meta name="theme-color" content="#11140f" />
+    <meta property="og:title" content="Outpost — one self-hosted panel for your servers, apps & games" />
+    <meta
+      property="og:description"
+      content="Minecraft & Steam servers, one-click apps, Portainer and any container — sandboxed by default, with live consoles, snapshots and five themes."
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Pixelify+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      // Apply the saved (or ?theme=) choice before first paint so the page never flashes the default.
+      (function () {
+        var ids = ['outpost', 'xp', 'minecraft', 'vista', 'aero'];
+        var root = document.documentElement;
+        var theme = null;
+        try {
+          var q = new URLSearchParams(location.search).get('theme');
+          theme = ids.indexOf(q) >= 0 ? q : localStorage.getItem('outpost_site_theme');
+        } catch (e) {}
+        if (ids.indexOf(theme) >= 0) root.dataset.theme = theme;
+        var wp = null;
+        try { wp = localStorage.getItem('outpost_site_wallpaper'); } catch (e) {}
+        if (!wp && window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) wp = 'static';
+        root.dataset.wallpaper = wp === 'static' ? 'static' : 'animated';
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Same layers as Outpost's Wallpaper component; each theme's CSS decides what they look like. -->
+    <div class="ui-wallpaper" aria-hidden="true">
+      <div class="wp-sky"></div>
+      <div class="wp-glow wp-glow-1"></div>
+      <div class="wp-glow wp-glow-2"></div>
+      <span class="wp-p" style="--x:6%;--y:18%;--s:46px;--d:38s;--phase:.12"></span>
+      <span class="wp-p" style="--x:18%;--y:62%;--s:22px;--d:29s;--phase:.58"></span>
+      <span class="wp-p" style="--x:31%;--y:30%;--s:70px;--d:46s;--phase:.33"></span>
+      <span class="wp-p" style="--x:47%;--y:74%;--s:30px;--d:33s;--phase:.81"></span>
+      <span class="wp-p" style="--x:58%;--y:12%;--s:54px;--d:52s;--phase:.47"></span>
+      <span class="wp-p" style="--x:69%;--y:48%;--s:18px;--d:27s;--phase:.93"></span>
+      <span class="wp-p" style="--x:81%;--y:26%;--s:84px;--d:58s;--phase:.24"></span>
+      <span class="wp-p" style="--x:92%;--y:68%;--s:36px;--d:35s;--phase:.69"></span>
+      <div class="wp-ground"></div>
+    </div>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-nav ui-sidebar">
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="Outpost home">
+          <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="6" fill="#12161b" />
+            <path d="M16 3.5v7" stroke="#c2c9bb" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M16.6 4l7 2.2-7 2.2z" fill="#4ade80" />
+            <rect x="9.5" y="10.5" width="13" height="3" rx="0.8" fill="#4ade80" />
+            <path d="M11.2 13.5h9.6l1.7 13H9.5z" fill="#22c55e" />
+            <rect x="14.4" y="20" width="3.2" height="6.5" rx="1.6" fill="#0c0f0a" />
+            <rect x="12.5" y="15.5" width="2" height="2" fill="#0c0f0a" opacity="0.55" />
+            <rect x="17.5" y="15.5" width="2" height="2" fill="#0c0f0a" opacity="0.55" />
+          </svg>
+          <span>Outpost</span>
+        </a>
+        <nav class="nav-links" aria-label="Sections">
+          <a class="ui-nav-item" href="#why"><span>Why Outpost</span></a>
+          <a class="ui-nav-item" href="#features"><span>Features</span></a>
+          <a class="ui-nav-item" href="#run"><span>What you can run</span></a>
+          <a class="ui-nav-item" href="#themes"><span>Themes</span></a>
+          <a class="ui-nav-item" href="#install"><span>Install</span></a>
+        </nav>
+        <div class="nav-actions">
+          <button class="ui-btn ui-btn-sm" id="theme-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="theme-popover">
+            <span class="swatch-dot" aria-hidden="true"></span>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+          <a class="ui-btn ui-btn-sm ui-btn-primary" href="https://github.com/niruxx/outpost">GitHub</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="ui-window ui-popover" id="theme-popover" role="dialog" aria-label="Appearance" hidden>
+      <div class="ui-window-header">
+        <h2 class="ui-window-title">Appearance</h2>
+        <button class="ui-window-close" type="button" id="theme-close" aria-label="Close">✕</button>
+      </div>
+      <div class="ui-window-body">
+        <div class="theme-list" data-theme-picker="compact"></div>
+        <label class="switch-row">
+          <input type="checkbox" data-wallpaper-toggle />
+          <span>Animated wallpaper</span>
+        </label>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- ============ Hero ============ -->
+      <section class="hero container" id="top">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">🧭 Self-hosted control panel</p>
+          <h1 class="hero-title">One panel for your servers, apps, containers and games.</h1>
+          <p class="hero-lead">
+            Spin up Minecraft and Steam game servers, one-click web apps, Portainer, any Docker or Podman
+            image and your own scripts — each one sandboxed, metered and shareable, all from your browser.
+          </p>
+          <div class="hero-cta">
+            <a class="ui-btn ui-btn-lg ui-btn-primary" href="#install">🚀 Install Outpost</a>
+            <a class="ui-btn ui-btn-lg" href="https://github.com/niruxx/outpost">View on GitHub</a>
+          </div>
+          <ul class="hero-chips" aria-label="Highlights">
+            <li>🟩 Node.js 22.5+</li>
+            <li>🗄️ SQLite built in</li>
+            <li>🐧 Linux · 🪟 Windows · 🍎 macOS</li>
+            <li>🐳 Docker or rootless Podman</li>
+          </ul>
+        </div>
+
+        <!-- A live mock of the dashboard; it re-skins with whichever theme is picked. -->
+        <figure class="mock" aria-label="Illustration of the Outpost dashboard">
+          <div class="mock-chrome" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span class="mock-url">localhost:8642</span>
+          </div>
+          <div class="mock-app ui-app">
+            <aside class="mock-side ui-sidebar">
+              <div class="mock-brand">
+                <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark" /></svg>
+                <b>Outpost</b>
+              </div>
+              <ul class="mock-nav">
+                <li class="ui-nav-item is-active"><span class="bg-secondary-container">🎮 Instances</span></li>
+                <li class="ui-nav-item"><span>🐳 Docker</span></li>
+                <li class="ui-nav-item"><span>🧱 Firewall</span></li>
+                <li class="ui-nav-item"><span>👥 Users</span></li>
+                <li class="ui-nav-item"><span>🧾 Audit log</span></li>
+                <li class="ui-nav-item"><span>⚙️ Configuration</span></li>
+              </ul>
+              <div class="mock-account ui-sidebar-panel">
+                <span class="avatar">A</span>
+                <span><b>admin</b><small>Administrator</small></span>
+              </div>
+            </aside>
+            <div class="mock-main ui-main">
+              <div class="mock-head">
+                <span class="ui-page-title">Instances</span>
+                <span class="ui-btn ui-btn-sm ui-btn-primary">＋ New instance</span>
+              </div>
+              <div class="mock-gauges">
+                <div class="ui-card gauge"><small>CPU</small><b>23%</b><span class="bar"><i style="width:23%"></i></span></div>
+                <div class="ui-card gauge"><small>Memory</small><b>6.1 / 16 GB</b><span class="bar"><i style="width:38%"></i></span></div>
+                <div class="ui-card gauge"><small>Disk</small><b>41%</b><span class="bar"><i style="width:41%"></i></span></div>
+              </div>
+              <div class="mock-list">
+                <div class="ui-card inst">
+                  <span class="emblem" style="--e1:#1f3d1a;--e2:#14240f">⛏️</span>
+                  <span class="inst-name"><b>Survival SMP</b><small>Paper 1.21 · 25565/tcp</small></span>
+                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
+                </div>
+                <div class="ui-card inst">
+                  <span class="emblem" style="--e1:#3a2d1a;--e2:#21190f">🪖</span>
+                  <span class="inst-name"><b>Vikings</b><small>Valheim · 2456/udp</small></span>
+                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
+                </div>
+                <div class="ui-card inst">
+                  <span class="emblem" style="--e1:#173a4a;--e2:#0f2330">🎞️</span>
+                  <span class="inst-name"><b>Jellyfin</b><small>Catalog app · 8096/tcp</small></span>
+                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
+                </div>
+                <div class="ui-card inst">
+                  <span class="emblem" style="--e1:#20262b;--e2:#0f1316">🐾</span>
+                  <span class="inst-name"><b>Palworld</b><small>Steam · 8211/udp</small></span>
+                  <span class="ui-badge"><i class="dot"></i>Stopped</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Pick a theme up top and watch the panel change with it.</figcaption>
+        </figure>
+      </section>
+
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="logo-mark" viewBox="0 0 32 32">
+          <rect width="32" height="32" rx="6" fill="#12161b" />
+          <path d="M16 3.5v7" stroke="#c2c9bb" stroke-width="1.4" stroke-linecap="round" />
+          <path d="M16.6 4l7 2.2-7 2.2z" fill="#4ade80" />
+          <rect x="9.5" y="10.5" width="13" height="3" rx="0.8" fill="#4ade80" />
+          <path d="M11.2 13.5h9.6l1.7 13H9.5z" fill="#22c55e" />
+          <rect x="14.4" y="20" width="3.2" height="6.5" rx="1.6" fill="#0c0f0a" />
+        </symbol>
+      </svg>
+
+      <!-- ============ Why ============ -->
+      <section class="container section" id="why">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">💚 Why Outpost?</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">
+              Most panels do one thing: a Minecraft host, a container UI, a game-server manager. Outpost puts
+              all of it behind one sign-in — and keeps every instance boxed into its own folder.
+            </p>
+            <div class="grid grid-3">
+              <article class="ui-card why">
+                <span class="why-icon">🧰</span>
+                <h3 class="ui-card-title">Everything in one place</h3>
+                <p>Game servers, web apps, databases, Portainer, any container image and your own scripts live side by side — with <b>Games · Apps · Containers · Custom</b> filters and an <b>Open web UI</b> button for anything that has one.</p>
+              </article>
+              <article class="ui-card why">
+                <span class="why-icon">🛡️</span>
+                <h3 class="ui-card-title">Sandboxed by default</h3>
+                <p>Each game process runs in a bubblewrap sandbox that can only write to its own folder. File access never follows a symlink out, uploads can't escape, and instances never inherit the panel's secrets.</p>
+              </article>
+              <article class="ui-card why">
+                <span class="why-icon">⚡</span>
+                <h3 class="ui-card-title">Zero native dependencies</h3>
+                <p>SQLite comes from <code>node:sqlite</code>; hashing and session tokens from <code>node:crypto</code>. No compiler toolchain and no external database: <code>npm run setup</code>, build, start.</p>
+              </article>
+              <article class="ui-card why">
+                <span class="why-icon">👥</span>
+                <h3 class="ui-card-title">Safe to share</h3>
+                <p>Hand a friend one server, not the whole box. You get roles, per-instance permissions, creation quotas and memory caps, and the API enforces all of them, not just the UI.</p>
+              </article>
+              <article class="ui-card why">
+                <span class="why-icon">🌙</span>
+                <h3 class="ui-card-title">Handles the 3 a.m. crash</h3>
+                <p>Auto-restart on crash, nightly restarts with an in-game warning, scheduled snapshots with retention, and Discord or webhook alerts when something stops or fails.</p>
+              </article>
+              <article class="ui-card why">
+                <span class="why-icon">🖥️</span>
+                <h3 class="ui-card-title">Runs where you do</h3>
+                <p>Linux, Windows or macOS, on a home server, a VPS or your desktop. Use Docker or rootless Podman, and link several Outpost hosts so you can move instances between them.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Features ============ -->
+      <section class="container section" id="features">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">✨ Features</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">🏗️ One-click installs</h3><p>Pick a platform and version from the live catalog and Outpost downloads and installs it. Spigot is built from source with BuildTools.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🖥️ Live console</h3><p>Real-time output over WebSocket, command history (↑/↓) and streamed install and update progress.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📊 Metrics everywhere</h3><p>Host gauges and throughput on the dashboard; per-instance CPU, RAM, network, disk I/O and uptime.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🧩 Plugins &amp; mods</h3><p>One-click installs from Modrinth and CurseForge: plugins, data packs and Bedrock add-ons. You can also upload BepInEx and <code>.pak</code> mods.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📸 Snapshots</h3><p>Take them manually or on a schedule, with retention. Restore everything, or diff one file against the live copy and restore just that file.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🚀 Launch control</h3><p>Choose the exact binary or jar, arguments, env vars, ready-detection and stop/restart behaviour for each instance.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">⌨️ Custom servers</h3><p>Run any Linux binary or shell script with <code>{{PORT}}</code>-style variables and process-group shutdown.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🐳 Docker &amp; Podman</h3><p>Run any image in a container that only sees its own folder, with presets for popular game images.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🌐 Multi-node</h3><p>Link other Outpost hosts and transfer an instance's files and settings between them.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔌 UPnP port forwarding</h3><p>Forward ports and ranges on your router from the panel, then test the forward step by step, including from the internet.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🧱 Firewall</h3><p>Open and close ports through UFW or firewalld. SSH and the panel itself can't be cut off by accident.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">👤 Players &amp; operators</h3><p>Op, kick, ban, whitelist, broadcasts, time, weather and difficulty, all from one page.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">⏰ Scheduled tasks</h3><p>Restart nightly with an in-game warning first, send console commands, or start and stop instances on a cron schedule.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔔 Discord &amp; webhooks</h3><p>Get told when an instance starts, stops or crashes, or when a scheduled snapshot or task fails.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔐 2FA &amp; audit log</h3><p>Authenticator-app codes with recovery codes, plus a searchable log of who signed in and what they changed.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">♻️ Auto-restart</h3><p>Bring an instance back when it crashes, or whenever it stops, with a delay and an optional attempt limit.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🛑 Suspension</h3><p>Stop and lock an instance (for non-payment or a TOS breach). Its owners lose panel and API access until you lift it.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">💾 Backup &amp; reset</h3><p>Export or import the whole install as one zip, update servers in place without losing worlds, and factory-reset behind three confirmations.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ What you can run ============ -->
+      <section class="container section" id="run">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🧰 What you can run</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">Click <b>New instance</b> and pick one of five types:</p>
+            <div class="grid grid-5 kinds">
+              <div class="ui-card kind"><span class="kind-icon">📦</span><b>App from the catalog</b><small>Web apps, databases and media servers with ports, folders and a web UI link already set up.</small></div>
+              <div class="ui-card kind"><span class="kind-icon">🧭</span><b>Portainer</b><small>A full container-management UI for this host, set up in one click.</small></div>
+              <div class="ui-card kind"><span class="kind-icon">🐳</span><b>Docker container</b><small>Any image from Docker Hub, GHCR or your own registry.</small></div>
+              <div class="ui-card kind"><span class="kind-icon">🎮</span><b>Game server</b><small>Minecraft Java and Bedrock, or Steam dedicated servers, installed, updated and modded for you.</small></div>
+              <div class="ui-card kind"><span class="kind-icon">⌨️</span><b>Custom process</b><small>Any binary or shell script with your own start, stop and restart commands.</small></div>
+            </div>
+
+            <div class="grid grid-2 run-split">
+              <div>
+                <h3 class="sub-title">📦 App catalog</h3>
+                <ul class="catalog">
+                  <li><span>🧭 Platform tools</span><b>Portainer · Uptime Kuma</b></li>
+                  <li><span>🌐 Web &amp; apps</span><b>Nginx · Vaultwarden</b></li>
+                  <li><span>🗄️ Databases</span><b>PostgreSQL · MariaDB · Redis</b></li>
+                  <li><span>🎞️ Media &amp; files</span><b>Jellyfin · File Browser</b></li>
+                  <li><span>🎮 Games</span><b>Minecraft, Valheim, Palworld, CS2 (as containers)</b></li>
+                </ul>
+                <p class="muted">Every template is a starting point. You can change the image, ports, environment, folders and limits before or after you create it.</p>
+              </div>
+              <div>
+                <h3 class="sub-title">🎮 Game servers</h3>
+                <div class="table-wrap">
+                  <table class="ui-table">
+                    <thead><tr><th>Game</th><th>Mods</th><th>Port</th></tr></thead>
+                    <tbody>
+                      <tr><td>⛏️ Minecraft Java — Paper · Purpur · Spigot · Vanilla</td><td>Plugins, data packs</td><td><code>25565/tcp</code></td></tr>
+                      <tr><td>🪨 Minecraft Bedrock</td><td><code>.mcpack</code> / <code>.mcaddon</code></td><td><code>19132/udp</code></td></tr>
+                      <tr><td>🪖 Valheim</td><td>BepInEx</td><td><code>2456/udp</code></td></tr>
+                      <tr><td>🐾 Palworld</td><td><code>.pak</code> mods</td><td><code>8211/udp</code></td></tr>
+                      <tr><td>🔫 Counter-Strike 2, CS:GO, Source, 1.6</td><td>—</td><td><code>27015/udp</code></td></tr>
+                      <tr><td>🏝️ Rust, ARK, 7 Days to Die, Satisfactory</td><td>—</td><td>game default</td></tr>
+                      <tr><td>🧟 Project Zomboid · 🌳 Terraria · 🎩 TF2</td><td>—</td><td>game default</td></tr>
+                      <tr><td>🎯 Any Steam App ID</td><td>—</td><td>your choice</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Themes ============ -->
+      <section class="container section" id="themes">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🎨 Five themes, one panel</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">
+              Material 3 dark by default, or go retro. Each theme restyles every card, button and dialog and
+              comes with its own animated wallpaper. Admins can give each account its own theme. Try them
+              here, since this whole page uses the same themes:
+            </p>
+            <div class="theme-grid" data-theme-picker="large"></div>
+            <label class="switch-row">
+              <input type="checkbox" data-wallpaper-toggle />
+              <span>Animated wallpaper</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Install ============ -->
+      <section class="container section" id="install">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🚀 Install in a few minutes</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <div class="tabs" role="tablist" aria-label="Install method">
+              <button class="ui-btn ui-btn-sm" role="tab" id="tab-script" aria-controls="panel-script" aria-selected="true">🐧 Install script</button>
+              <button class="ui-btn ui-btn-sm" role="tab" id="tab-manual" aria-controls="panel-manual" aria-selected="false">📦 Any OS</button>
+              <button class="ui-btn ui-btn-sm" role="tab" id="tab-service" aria-controls="panel-service" aria-selected="false">🔁 Run 24/7</button>
+              <button class="ui-btn ui-btn-sm" role="tab" id="tab-update" aria-controls="panel-update" aria-selected="false">⬆️ Update</button>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script">
+              <p>
+                On <b>Debian/Ubuntu, Arch or Fedora</b>, <code>install.sh</code> does everything for you. It installs
+                Node.js, Java, the bubblewrap sandbox and a container engine, then builds Outpost, runs a health
+                check and optionally sets up <code>outpost.service</code>.
+              </p>
+              <div class="ui-terminal">
+                <div class="term-bar"><span>bash</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
+<pre><code>git clone https://github.com/niruxx/outpost Outpost &amp;&amp; cd Outpost
+./install.sh                    <span class="c"># asks as it goes (Docker by default)</span>
+./install.sh --engine=podman    <span class="c"># rootless Podman — no root daemon</span>
+./install.sh -y                 <span class="c"># accept every default</span></code></pre>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="panel-manual" aria-labelledby="tab-manual" hidden>
+              <p>Works on <b>Linux, Windows and macOS</b>. Install the prerequisites, then:</p>
+              <div class="ui-terminal">
+                <div class="term-bar"><span>shell</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
+<pre><code>git clone https://github.com/niruxx/outpost Outpost &amp;&amp; cd Outpost
+npm run setup        <span class="c"># 📦 install dependencies</span>
+npm run build        <span class="c"># 🏗️ build API + UI</span>
+npm start            <span class="c"># ▶️ http://localhost:8642</span></code></pre>
+              </div>
+              <div class="table-wrap">
+                <table class="ui-table">
+                  <thead><tr><th></th><th>🪟 Windows</th><th>🐧 Debian/Ubuntu</th><th>🍎 macOS</th></tr></thead>
+                  <tbody>
+                    <tr><th>Node.js 22.5+</th><td><code>winget install OpenJS.NodeJS.LTS</code></td><td>NodeSource 22.x → <code>apt install nodejs</code></td><td><code>brew install node</code></td></tr>
+                    <tr><th>Java 21+</th><td><code>winget install EclipseAdoptium.Temurin.21.JDK</code></td><td><code>apt install openjdk-21-jre-headless</code></td><td><code>brew install openjdk@21</code></td></tr>
+                    <tr><th>Git</th><td><code>winget install Git.Git</code></td><td><code>apt install git</code></td><td><code>brew install git</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="panel-service" aria-labelledby="tab-service" hidden>
+              <p>Keep the panel running across reboots with <b>pm2</b> on any OS. Outpost's README also covers <b>systemd</b>, a <b>Windows service</b> via NSSM and <b>launchd</b> on macOS.</p>
+              <div class="ui-terminal">
+                <div class="term-bar"><span>bash</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
+<pre><code>npm install -g pm2 &amp;&amp; npm run build
+pm2 start npm --name outpost -- start
+pm2 save &amp;&amp; pm2 startup</code></pre>
+              </div>
+            </div>
+
+            <div class="tab-panel" role="tabpanel" id="panel-update" aria-labelledby="tab-update" hidden>
+              <p>
+                <code>update.sh</code> backs up your data first, pulls, rebuilds and test-starts the new build
+                before it touches your live service. If the new build fails, you can roll back instantly.
+              </p>
+              <div class="ui-terminal">
+                <div class="term-bar"><span>bash</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
+<pre><code>./update.sh               <span class="c"># recommended</span>
+./update.sh --rollback    <span class="c"># restore the previous commit</span></code></pre>
+              </div>
+            </div>
+
+            <div class="grid grid-3 steps">
+              <div class="ui-card step"><span class="step-n">1</span><div><b>Install</b><small>Use the script, or run the three npm commands above.</small></div></div>
+              <div class="ui-card step"><span class="step-n">2</span><div><b>Open the panel</b><small>Go to <code>http://localhost:8642</code> and create the admin account.</small></div></div>
+              <div class="ui-card step"><span class="step-n">3</span><div><b>New instance</b><small>Pick a game, an app or an image, and it's running.</small></div></div>
+            </div>
+
+            <h3 class="sub-title">What you need</h3>
+            <ul class="needs">
+              <li><b>🟩 Node.js 22.5+</b> <span>(24 recommended) for the panel itself</span></li>
+              <li><b>☕ Java 21+</b> <span>for Vanilla, Paper, Purpur and Spigot servers</span></li>
+              <li><b>🛠️ JDK + git</b> <span>to build Spigot from source</span></li>
+              <li><b>🧱 32-bit libraries</b> <span>for Steam-based servers on Linux</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Security + Roadmap ============ -->
+      <section class="container section grid grid-2 duo">
+        <div class="ui-window" id="security">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🛡️ Security, in layers</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <ul class="layers">
+              <li><b>Process sandbox</b><span>Games can only write inside their own folder. Your home folder, other instances and the panel's database don't exist inside the sandbox.</span></li>
+              <li><b>Symlink-proof file access</b><span>The panel refuses to follow links out of an instance when browsing, editing, uploading or restoring.</span></li>
+              <li><b>Safe uploads</b><span>File names are reduced to a plain name, so <code>../../file</code> can't land outside the folder.</span></li>
+              <li><b>Clean environment</b><span>Instances never inherit the panel's environment variables or credentials.</span></li>
+              <li><b>Locked-down containers</b><span>Each container sees only its own folder, with memory, CPU and process limits and <code>no-new-privileges</code>.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ui-window" id="roadmap">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🗺️ Roadmap</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <ul class="roadmap">
+              <li class="done">Material 3 redesign with list / grid / box views</li>
+              <li class="done">Custom launch executables, jars and script servers</li>
+              <li class="done">Snapshots with per-file diff &amp; restore</li>
+              <li class="done">UPnP port forwarding and auto-restart</li>
+              <li class="done">Process sandbox and Docker/Podman instances</li>
+              <li class="done">General-purpose platform: app catalog, Portainer, web UI links</li>
+              <li>Mohist and SpongeForge instances</li>
+              <li>Restore view for Minecraft's own auto-save states</li>
+            </ul>
+            <p class="muted">Coming from <b>MultiCraft</b>? Outpost is the same project renamed. You can upgrade in place: the old names keep working, and nobody gets logged out.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="container cta">
+        <h2 class="hero-title cta-title">Ready to stop SSH-ing into your server?</h2>
+        <div class="hero-cta">
+          <a class="ui-btn ui-btn-lg ui-btn-primary" href="#install">🚀 Get started</a>
+          <a class="ui-btn ui-btn-lg" href="https://github.com/niruxx/outpost">⭐ Star on GitHub</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <p>Made with 💚 for people who'd rather play than SSH.</p>
+      <p><a href="https://github.com/niruxx/outpost">github.com/niruxx/outpost</a></p>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
