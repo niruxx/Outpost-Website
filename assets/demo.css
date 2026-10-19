@@ -1,0 +1,677 @@
+/*
+ * Live demo (assets/demo.js). Builds on the hero mock's classes (.mock, .mock-app, .ui-sidebar,
+ * .ui-main…), so each theme's rules in styles.css already apply; this adds the interactive parts.
+ */
+
+/* Status colors for badges, console lines and danger buttons. */
+:root {
+  --warn-400: 236 198 92;
+  --bad-400: 255 180 171;
+}
+[data-theme='xp'],
+[data-theme='vista'] {
+  --warn-400: 150 100 0;
+  --bad-400: 192 0 0;
+}
+[data-theme='minecraft'] {
+  --warn-400: 110 75 0;
+  --bad-400: 170 0 0;
+}
+[data-theme='aero'] {
+  --warn-400: 140 95 0;
+  --bad-400: 190 30 40;
+}
+
+/* The demo has a few more links than the hero mock; keep the top bar from crowding. */
+@media (max-width: 1060px) {
+  .nav-links { display: none; }
+}
+
+/* ---------- Frame ---------- */
+.demo .mock-app {
+  position: relative;
+  height: 640px;
+  font-size: 0.86rem;
+  box-shadow: 0 18px 50px -20px rgb(0 0 0 / 0.5);
+}
+@media (max-width: 599px) {
+  .demo .mock-app { height: 600px; }
+}
+.demo .mock-main {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px;
+}
+.demo-nav {
+  display: grid;
+  gap: 2px;
+}
+.demo-nav .ui-nav-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.demo-nav .ui-nav-item:hover > span {
+  background: rgb(var(--secondary-container) / 0.55);
+}
+.demo-nav .ui-nav-item.is-active > span {
+  background: rgb(var(--secondary-container));
+  color: rgb(var(--secondary-on-container));
+  font-weight: 600;
+}
+.demo-mnav {
+  display: none;
+  gap: 6px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+@media (max-width: 599px) {
+  .demo-mnav { display: flex; }
+}
+.demo-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+.demo-foot .muted {
+  margin: 0;
+}
+
+/* Readable backdrops behind the content where the theme's mock page is a busy picture. */
+[data-theme='xp'] .demo .mock-main {
+  background: rgba(236, 233, 216, 0.94);
+}
+[data-theme='minecraft'] .demo .mock-main {
+  background: #c6c6c6;
+  box-shadow: inset 3px 3px 0 #fff, inset -3px -3px 0 #555;
+}
+[data-theme='aero'] .demo .mock-main {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ---------- Buttons ---------- */
+.ui-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+[data-theme] .ui-btn.ui-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  font-style: normal;
+  color: rgb(var(--accent-400));
+}
+[data-theme] .ui-btn.ui-btn-ghost:hover {
+  text-decoration: underline;
+}
+[data-theme='outpost'] .ui-btn-danger {
+  color: rgb(var(--bad-400));
+  border-color: rgb(var(--bad-400) / 0.5);
+}
+[data-theme='outpost'] .ui-btn-danger:not(:disabled):hover {
+  background: rgb(var(--bad-400) / 0.1);
+}
+[data-theme='xp'] .ui-btn.ui-btn-danger {
+  background: linear-gradient(180deg, #e88a73 0%, #d65a3c 50%, #c8381e 100%);
+  border-color: #8a1f0e;
+  color: #fff;
+}
+[data-theme='minecraft'] .ui-btn.ui-btn-danger {
+  background: #8f2a2a;
+  box-shadow: inset 2px 2px 0 #c05050, inset -2px -3px 0 #5a1515;
+  color: #fff;
+}
+[data-theme='minecraft'] .ui-btn:disabled {
+  background: #2c2c2c;
+  box-shadow: none;
+  color: #a0a0a0;
+  opacity: 1;
+}
+[data-theme='vista'] .ui-btn.ui-btn-danger {
+  background: linear-gradient(180deg, #eeb3a5 0%, #dc7d66 49%, #c8442a 50%, #d9654a 100%);
+  border-color: #8b2a17;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+[data-theme='aero'] .ui-btn.ui-btn-danger {
+  background: linear-gradient(180deg, #fff0f0 0%, #ffb4b4 49%, #f37373 50%, #ffb0b0 100%);
+  border-color: #c84444;
+  color: #5c0a0a;
+}
+
+/* ---------- Status badges ---------- */
+.ui-badge.is-busy {
+  background: rgb(var(--warn-400) / 0.16);
+  color: rgb(var(--warn-400));
+}
+.ui-badge.is-busy .dot {
+  animation: demo-blink 1s ease-in-out infinite;
+}
+.ui-badge.is-bad {
+  background: rgb(var(--bad-400) / 0.16);
+  color: rgb(var(--bad-400));
+}
+@keyframes demo-blink {
+  50% { opacity: 0.25; }
+}
+[data-theme='minecraft'] .ui-badge.is-busy {
+  background: #ffff55;
+  color: #3f3f00;
+}
+[data-theme='minecraft'] .ui-badge.is-bad {
+  background: #ff5555;
+  color: #fff;
+}
+
+/* ---------- Instances list ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.demo-inst {
+  flex-wrap: wrap;
+}
+.inst-open {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.inst-open:hover b {
+  text-decoration: underline;
+}
+.inst-metrics {
+  display: flex;
+  gap: 10px;
+  color: rgb(var(--ink-400));
+  font-size: 0.74rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .inst-metrics { display: none; }
+}
+.demo-empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: rgb(var(--ink-400));
+}
+.demo-note {
+  color: rgb(var(--ink-400));
+  font-size: 0.84rem;
+  margin: 12px 0;
+}
+.engine {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.engine b {
+  display: block;
+  color: rgb(var(--ink-50));
+}
+.engine small {
+  color: rgb(var(--ink-400));
+}
+.engine-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(var(--success-400));
+  box-shadow: 0 0 0 4px rgb(var(--success-400) / 0.2);
+  flex-shrink: 0;
+}
+
+/* ---------- Instance detail ---------- */
+.back {
+  margin: -4px 0 8px -8px;
+}
+.det-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.emblem.big {
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  border-radius: 12px;
+}
+.det-title {
+  flex: 1;
+  min-width: 0;
+}
+.det-title .ui-page-title {
+  display: block;
+  font-size: 1.3rem;
+}
+.det-title small {
+  color: rgb(var(--ink-400));
+}
+.det-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.dtabs {
+  margin-bottom: 12px;
+}
+
+/* Console */
+.demo-console {
+  margin: 0;
+}
+.term-live {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.con-out {
+  height: 330px;
+  overflow-y: auto;
+  padding: 10px 14px;
+  font: 0.78rem/1.6 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+@media (max-width: 599px) {
+  .con-out { height: 250px; }
+}
+.con-out .ts {
+  color: rgb(108 116 104);
+  margin-right: 8px;
+}
+.con-out .sys { color: rgb(120 220 119); }
+.con-out .warn { color: rgb(236 198 92); }
+.con-out .err { color: rgb(255 180 171); }
+.con-out .cmd { color: rgb(158 202 255); }
+.con-out .chat { color: rgb(241 244 234); }
+.con-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-top: 1px solid rgb(39 43 37);
+}
+.con-form .prompt {
+  color: rgb(120 220 119);
+  font-family: 'JetBrains Mono', monospace;
+}
+.con-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: rgb(225 228 218);
+  font: 0.84rem 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  outline: none;
+}
+.con-input::placeholder {
+  color: rgb(108 116 104);
+}
+[data-theme='minecraft'] .con-out .sys { color: #55ff55; }
+[data-theme='minecraft'] .con-out .cmd { color: #55ffff; }
+
+/* Status tab */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+@media (min-width: 900px) {
+  .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+.tile small {
+  display: block;
+  color: rgb(var(--ink-400));
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tile b {
+  display: block;
+  color: rgb(var(--ink-50));
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tile-sub {
+  display: block;
+  color: rgb(var(--ink-400));
+  font-size: 0.72rem;
+  margin-top: 6px;
+}
+.spark {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-top: 6px;
+  overflow: visible;
+}
+.spark polyline {
+  fill: none;
+  stroke: rgb(var(--accent-400));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+[data-theme='minecraft'] .spark polyline {
+  stroke: #55ff55;
+}
+.restart-card .switch-row {
+  margin-top: 4px;
+  color: rgb(var(--ink-300));
+}
+.restart-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.restart-row .muted {
+  font-size: 0.8rem;
+}
+
+/* Players and snapshots */
+.head {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: hsl(var(--h) 45% 40%);
+  color: #fff;
+  font-weight: 700;
+  image-rendering: pixelated;
+}
+.snap-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.snap-head .muted {
+  font-size: 0.8rem;
+}
+.snap-icon {
+  font-size: 1.2rem;
+}
+.audit {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.audit li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgb(var(--surface-700));
+  color: rgb(var(--ink-300));
+}
+.audit b {
+  color: rgb(var(--ink-50));
+}
+.audit .when {
+  display: inline-block;
+  min-width: 118px;
+  color: rgb(var(--ink-400));
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme='minecraft'] .head,
+[data-theme='minecraft'] .emblem.big {
+  border-radius: 0;
+}
+
+/* ---------- New-instance dialog ---------- */
+.demo-modal-host {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.demo-modal-host:empty {
+  display: none;
+}
+.demo-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.45);
+  pointer-events: auto;
+}
+.demo-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100% - 24px));
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
+  pointer-events: auto;
+  background: rgb(var(--surface-850));
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.5);
+}
+.demo-modal .ui-window-header {
+  padding: 16px 16px 4px 22px;
+}
+.demo-modal .ui-window-title {
+  font-size: 1.15rem;
+}
+.demo-modal .ui-window-body {
+  padding: 12px 22px 22px;
+}
+.modal-lead {
+  color: rgb(var(--ink-300));
+}
+.pick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.pick-grid.three {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+.pick {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.pick.small {
+  padding: 10px 12px;
+}
+.pick:hover {
+  border-color: rgb(var(--accent-400));
+}
+.pick[aria-pressed='true'] {
+  outline: 2px solid rgb(var(--accent-400));
+  outline-offset: -2px;
+}
+.pick b {
+  color: rgb(var(--ink-50));
+}
+.pick small {
+  color: rgb(var(--ink-400));
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+.pick-emoji {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+.field {
+  display: block;
+  margin-bottom: 12px;
+}
+.field > span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgb(var(--ink-300));
+  margin-bottom: 4px;
+}
+.ui-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid rgb(var(--surface-600));
+  background: rgb(var(--surface-800));
+  color: rgb(var(--ink-50));
+  font: inherit;
+}
+.ui-input:focus {
+  outline: none;
+  border-color: rgb(var(--accent-400));
+  box-shadow: 0 0 0 3px rgb(var(--accent-400) / 0.25);
+}
+[data-theme='xp'] .ui-input {
+  background: #fff;
+  border: 1px solid #7f9db9;
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme='minecraft'] .ui-input {
+  background: #000;
+  border: 2px solid #a0a0a0;
+  border-radius: 0;
+  color: #e0e0e0;
+  box-shadow: none;
+}
+[data-theme='minecraft'] .ui-input:focus {
+  border-color: #fff;
+}
+[data-theme='vista'] .ui-input {
+  background: #fff;
+  border: 1px solid #abadb3;
+  border-top-color: #8e8f8f;
+  border-radius: 2px;
+  box-shadow: none;
+}
+[data-theme='aero'] .ui-input {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #8fcdee;
+  box-shadow: inset 0 1px 3px rgba(0, 80, 130, 0.12);
+}
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+}
+[data-theme='xp'] .demo-modal {
+  background: #ece9d8;
+}
+[data-theme='minecraft'] .demo-modal {
+  background-color: #c6c6c6;
+}
+[data-theme='minecraft'] .pick {
+  border-radius: 0;
+}
+[data-theme='minecraft'] .pick[aria-pressed='true'] {
+  outline: 2px solid #fff;
+}
+[data-theme='vista'] .demo-modal {
+  background: #fff;
+}
+[data-theme='aero'] .demo-modal {
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+/* ---------- Toasts (the panel's own styles per theme) ---------- */
+.demo-toasts {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: min(360px, calc(100% - 24px));
+  pointer-events: none;
+}
+.ui-toast {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgb(225 228 218);
+  color: rgb(46 49 43);
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+  animation: demo-toast-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.ui-toast.out {
+  opacity: 0;
+  transform: translateY(6px);
+}
+@keyframes demo-toast-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.ui-toast-error {
+  background: rgb(255 218 214);
+  color: rgb(65 0 2);
+}
+/* XP's yellow balloon tooltip */
+[data-theme='xp'] .ui-toast {
+  background: #ffffe1;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+/* Minecraft's purple-edged item tooltip */
+[data-theme='minecraft'] .ui-toast {
+  background: #100010;
+  color: #fff;
+  border: 2px solid #2d0a63;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px #5000ff, 0 4px 0 rgba(0, 0, 0, 0.35);
+  text-shadow: 1px 1px 0 #3f3f3f;
+}
+[data-theme='minecraft'] .ui-toast-success { color: #55ff55; }
+[data-theme='minecraft'] .ui-toast-error { color: #ff5555; }
+[data-theme='minecraft'] .ui-toast-info { color: #55ffff; }
+[data-theme='vista'] .ui-toast {
+  background: linear-gradient(180deg, #ffffff 0%, #e4e5f0 100%);
+  color: #3c3c3c;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+[data-theme='aero'] .ui-toast {
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f2d4b;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  box-shadow: 0 6px 20px rgba(0, 90, 140, 0.25);
+}

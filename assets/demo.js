@@ -727,7 +727,7 @@
       '<form class="con-form" data-form="console" data-id="' + inst.id + '">' +
       '<span class="prompt" aria-hidden="true">&gt;</span>' +
       '<input class="con-input" name="cmd" autocomplete="off" spellcheck="false" aria-label="Console command" placeholder="' +
-      (live ? hint : 'Start the instance to send commands') + '"' + (live ? '' : ' disabled') + ' />' +
+      esc(live ? hint : 'Start the instance to send commands') + '"' + (live ? '' : ' disabled') + ' />' +
       '</form></div>'
     );
   }
@@ -857,7 +857,6 @@
       if (hadFocus && !newInput.disabled) newInput.focus({ preventScroll: true });
     }
     updateLive();
-    if (state.modal) renderModal();
   }
 
   /* ---------- New instance dialog ---------- */

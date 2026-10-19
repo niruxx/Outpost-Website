@@ -10,6 +10,8 @@ The page uses Outpost's own five themes: **Outpost** (Material 3 dark), **Window
 index.html         the page
 assets/styles.css  tokens, components, the five themes and their wallpapers
 assets/app.js      theme picker, wallpaper toggle, install tabs, copy buttons
+assets/demo.js     the live demo: a simulated panel that runs entirely in the browser
+assets/demo.css    styles for the live demo (badges, console, dialog, toasts per theme)
 favicon.svg        the Outpost watchtower mark
 .nojekyll          tells GitHub Pages to serve the files as-is
 ```
