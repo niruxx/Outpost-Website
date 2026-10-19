@@ -343,7 +343,7 @@
                 <h3 class="ui-card-title">🧰 Grow past one game</h3>
                 <ul>
                   <li>Keep Paper, Purpur, Spigot, Vanilla and Bedrock, with Modrinth and CurseForge installs.</li>
-                  <li>Add Valheim, Palworld, CS2, Rust, ARK, Terraria or any Steam App ID.</li>
+                  <li>Add Valheim, Palworld, CS2, Rust, ARK, Terraria or any Steam App ID, including Windows-only servers through Wine.</li>
                   <li>Run Jellyfin, Vaultwarden, PostgreSQL, Portainer or any container image next to them.</li>
                   <li>Use the same panel, users and permissions for all of it.</li>
                 </ul>
@@ -397,6 +397,13 @@
                     <td><span class="mk yes"></span>Many, through templates</td>
                     <td><span class="mk no"></span>One game</td>
                     <td class="is-us"><span class="mk yes"></span>Minecraft Java and Bedrock, 20+ Steam titles, any App ID</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Windows-only servers on Linux</th>
+                    <td>—</td>
+                    <td><span class="mk part"></span>With Wine-based templates</td>
+                    <td><span class="mk no"></span>No</td>
+                    <td class="is-us"><span class="mk yes"></span>Built-in Wine, auto-detected for <code>.exe</code></td>
                   </tr>
                   <tr>
                     <th scope="row">Web apps, databases &amp; containers</th>
@@ -471,6 +478,7 @@
               <article class="ui-card feat"><h3 class="ui-card-title">📸 Snapshots</h3><p>Take them manually or on a schedule, with retention. Restore everything, or diff one file against the live copy and restore just that file.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🚀 Launch control</h3><p>Choose the exact binary or jar, arguments, env vars, ready-detection and stop/restart behaviour for each instance.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">⌨️ Custom servers</h3><p>Run any Linux binary or shell script with <code>{{PORT}}</code>-style variables and process-group shutdown.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🍷 Windows servers on Linux</h3><p>Windows-only dedicated servers run through Wine. Outpost detects a <code>.exe</code> automatically, or you can switch Wine on in Launch settings. Each instance gets its own Wine prefix in its folder, still inside the sandbox.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🐳 Docker &amp; Podman</h3><p>Run any image in a container that only sees its own folder, with presets for popular game images.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🌐 Multi-node</h3><p>Link other Outpost hosts and transfer an instance's files and settings between them.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🔌 UPnP port forwarding</h3><p>Forward ports and ranges on your router from the panel, then test the forward step by step, including from the internet.</p></article>
@@ -529,6 +537,7 @@
                       <tr><td>🔫 Counter-Strike 2, CS:GO, Source, 1.6</td><td>—</td><td><code>27015/udp</code></td></tr>
                       <tr><td>🏝️ Rust, ARK, 7 Days to Die, Satisfactory</td><td>—</td><td>game default</td></tr>
                       <tr><td>🧟 Project Zomboid · 🌳 Terraria · 🎩 TF2</td><td>—</td><td>game default</td></tr>
+                      <tr><td>🍷 Windows-only dedicated servers: SteamCMD fetches the Windows build, Wine runs it</td><td>—</td><td>game default</td></tr>
                       <tr><td>🎯 Any Steam App ID</td><td>—</td><td>your choice</td></tr>
                     </tbody>
                   </table>
@@ -579,7 +588,7 @@
             <div class="tab-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script">
               <p>
                 On <b>Debian/Ubuntu, Arch or Fedora</b>, <code>install.sh</code> does everything for you. It installs
-                Node.js, Java, the bubblewrap sandbox and a container engine, then builds Outpost, runs a health
+                Node.js, Java, the bubblewrap sandbox, a container engine and Wine for Windows-only servers, then builds Outpost, runs a health
                 check and optionally sets up <code>outpost.service</code>.
               </p>
               <div class="ui-terminal">
@@ -646,6 +655,7 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
               <li><b>☕ Java 21+</b> <span>for Vanilla, Paper, Purpur and Spigot servers</span></li>
               <li><b>🛠️ JDK + git</b> <span>to build Spigot from source</span></li>
               <li><b>🧱 32-bit libraries</b> <span>for Steam-based servers on Linux</span></li>
+              <li><b>🍷 Wine</b> <span>for Windows-only servers on Linux (<code>install.sh</code> sets it up)</span></li>
             </ul>
           </div>
         </div>

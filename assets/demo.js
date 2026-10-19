@@ -53,6 +53,7 @@
     bedrock: { label: 'Bedrock', desc: 'Minecraft Bedrock Edition', group: 'game', emoji: '🪨', sub: 'Minecraft Bedrock', port: '19132/udp', flavor: 'bedrock', install: 'zip', e: ['#3a3f45', '#1d2024'], mem: [500, 900], cpu: [3, 14] },
     valheim: { label: 'Valheim', desc: 'Steam · BepInEx mods', group: 'game', emoji: '🪖', sub: 'Valheim', port: '2456/udp', flavor: 'valheim', install: 'steam', app: 896660, e: ['#3a2d1a', '#21190f'], mem: [2600, 3400], cpu: [10, 32] },
     palworld: { label: 'Palworld', desc: 'Steam · .pak mods', group: 'game', emoji: '🐾', sub: 'Palworld', port: '8211/udp', flavor: 'palworld', install: 'steam', app: 2394010, e: ['#173a4a', '#0f2330'], mem: [4800, 7200], cpu: [14, 40] },
+    vrising: { label: 'V Rising', desc: 'Windows-only · runs with Wine', group: 'game', emoji: '🧛', sub: 'V Rising · Wine', port: '9876/udp', flavor: 'wine', install: 'steam', windows: true, app: 1829350, exe: 'VRisingServer.exe', e: ['#4a1d24', '#2b0f14'], mem: [2400, 3600], cpu: [8, 26] },
     terraria: { label: 'Terraria', desc: 'Vanilla dedicated server', group: 'game', emoji: '🌳', sub: 'Terraria', port: '7777/tcp', flavor: 'terraria', install: 'zip', e: ['#24461f', '#132810'], mem: [400, 800], cpu: [3, 12] },
     jellyfin: { label: 'Jellyfin', desc: 'Media streaming', group: 'app', emoji: '🎞️', sub: 'Catalog app', port: '8096/tcp', flavor: 'app', image: 'jellyfin/jellyfin:latest', ready: '[INF] Startup complete 0:00:03.41', web: true, e: ['#2a1d4a', '#140f2b'], mem: [380, 620], cpu: [1, 9] },
     kuma: { label: 'Uptime Kuma', desc: 'Uptime monitoring', group: 'app', emoji: '📈', sub: 'Catalog app', port: '3001/tcp', flavor: 'app', image: 'louislam/uptime-kuma:1', ready: 'Listening on 3001', web: true, e: ['#1d3a2e', '#0f2219'], mem: [90, 140], cpu: [0.5, 3] },
@@ -264,6 +265,14 @@
           ['[S_API] SteamAPI_Init() succeeded'],
           ['Running Palworld dedicated server on :8211'],
         ];
+      case 'wine':
+        return [
+          ['[Outpost] Windows executable detected — launching with Wine (WINEPREFIX=./.wine)', 'sys'],
+          ['[Outpost] Starting: wine ./' + t.exe, 'sys'],
+          ['[Server] Loading server settings'],
+          ['[Server] Loading world "' + inst.name + '"'],
+          ['[Server] Server started on port ' + t.port.split('/')[0]],
+        ];
       case 'terraria':
         return [
           ['[Outpost] Starting: ./TerrariaServer -port 7777 -autocreate 2 -world worlds/' + inst.name + '.wld', 'sys'],
@@ -313,6 +322,8 @@
         ];
       case 'bedrock':
         return [['[Outpost] Sending console command: stop', 'sys'], ['[INFO] Server stop requested.'], ['[INFO] Stopping server...'], ['Quit correctly'], ['[Outpost] Process exited with code 0', 'sys']];
+      case 'wine':
+        return [['[Outpost] Sending SIGINT through Wine', 'sys'], ['[Server] Saving world…'], ['[Server] Shutdown complete'], ['[Outpost] Process exited with code 0', 'sys']];
       case 'terraria':
         return [['[Outpost] Sending console command: exit', 'sys'], ['Saving world data: 100%'], ['[Outpost] Process exited with code 0', 'sys']];
       case 'custom':
@@ -335,7 +346,7 @@
     }
     if (t.install === 'steam') {
       return [
-        ['[Outpost] steamcmd +login anonymous +app_update ' + t.app + ' validate +quit', 'sys'],
+        ['[Outpost] steamcmd ' + (t.windows ? '+@sSteamCmdForcePlatformType windows ' : '') + '+login anonymous +app_update ' + t.app + ' validate +quit', 'sys'],
         [' Update state (0x61) downloading, progress: 12.40'],
         [' Update state (0x61) downloading, progress: 57.83'],
         [' Update state (0x61) downloading, progress: 100.00'],
