@@ -22,6 +22,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/demo.css" />
     <script>
       // Apply the saved (or ?theme=) choice before first paint so the page never flashes the default.
       (function () {
@@ -75,10 +76,10 @@
           <span>Outpost</span>
         </a>
         <nav class="nav-links" aria-label="Sections">
+          <a class="ui-nav-item" href="#demo"><span>Live demo</span></a>
           <a class="ui-nav-item" href="#why"><span>Why Outpost</span></a>
           <a class="ui-nav-item" href="#compare"><span>Compare</span></a>
           <a class="ui-nav-item" href="#features"><span>Features</span></a>
-          <a class="ui-nav-item" href="#run"><span>What you can run</span></a>
           <a class="ui-nav-item" href="#themes"><span>Themes</span></a>
           <a class="ui-nav-item" href="#install"><span>Install</span></a>
         </nav>
@@ -118,7 +119,7 @@
           </p>
           <div class="hero-cta">
             <a class="ui-btn ui-btn-lg ui-btn-primary" href="#install">🚀 Install Outpost</a>
-            <a class="ui-btn ui-btn-lg" href="https://github.com/niruxx/outpost">View on GitHub</a>
+            <a class="ui-btn ui-btn-lg" href="#demo">▶ Try the live demo</a>
           </div>
           <ul class="hero-chips" aria-label="Highlights">
             <li>🟩 Node.js 22.5+</li>
@@ -187,7 +188,7 @@
               </div>
             </div>
           </div>
-          <figcaption>Pick a theme up top and watch the panel change with it.</figcaption>
+          <figcaption>Pick a theme up top and watch the panel change, or <a href="#demo">try the live demo ↓</a></figcaption>
         </figure>
       </section>
 
@@ -201,6 +202,58 @@
           <rect x="14.4" y="20" width="3.2" height="6.5" rx="1.6" fill="#0c0f0a" />
         </symbol>
       </svg>
+
+      <!-- ============ Live demo ============ -->
+      <section class="container section" id="demo">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🕹️ Live demo</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">
+              Click around a simulated Outpost. You can start and stop servers, type in the live console,
+              op and kick players, take a snapshot, crash a server to watch it auto-restart, or create a new
+              instance. Everything runs in your browser. Nothing is installed and nothing leaves this page.
+            </p>
+            <div class="mock demo" id="demo-root">
+              <div class="mock-chrome" aria-hidden="true">
+                <i></i><i></i><i></i>
+                <span class="mock-url">localhost:8642</span>
+              </div>
+              <div class="mock-app ui-app">
+                <aside class="mock-side ui-sidebar">
+                  <div class="mock-brand">
+                    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark" /></svg>
+                    <b>Outpost</b>
+                  </div>
+                  <nav class="mock-nav demo-nav" aria-label="Demo panel">
+                    <button type="button" class="ui-nav-item" data-act="nav" data-view="instances"><span>🎮 Instances</span></button>
+                    <button type="button" class="ui-nav-item" data-act="nav" data-view="docker"><span>🐳 Docker</span></button>
+                    <button type="button" class="ui-nav-item" data-act="stub" data-name="Firewall"><span>🧱 Firewall</span></button>
+                    <button type="button" class="ui-nav-item" data-act="nav" data-view="users"><span>👥 Users</span></button>
+                    <button type="button" class="ui-nav-item" data-act="nav" data-view="audit"><span>🧾 Audit log</span></button>
+                    <button type="button" class="ui-nav-item" data-act="stub" data-name="Configuration"><span>⚙️ Configuration</span></button>
+                  </nav>
+                  <div class="mock-account ui-sidebar-panel">
+                    <span class="avatar">A</span>
+                    <span><b>admin</b><small>Administrator</small></span>
+                  </div>
+                </aside>
+                <div class="mock-main ui-main" data-demo-main>
+                  <noscript><p>The live demo needs JavaScript.</p></noscript>
+                </div>
+                <div class="demo-modal-host" data-demo-modal></div>
+                <div class="demo-toasts" data-demo-toasts aria-live="polite"></div>
+              </div>
+            </div>
+            <div class="demo-foot">
+              <span class="muted">This is a simulation. Logs, metrics and players are made up. Themes from the top bar apply here too.</span>
+              <button type="button" class="ui-btn ui-btn-sm" id="demo-reset">↺ Reset demo</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- ============ Why ============ -->
       <section class="container section" id="why">
@@ -652,5 +705,6 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
     </footer>
 
     <script src="assets/app.js"></script>
+    <script src="assets/demo.js"></script>
   </body>
 </html>
