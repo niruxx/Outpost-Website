@@ -76,6 +76,7 @@
         </a>
         <nav class="nav-links" aria-label="Sections">
           <a class="ui-nav-item" href="#why"><span>Why Outpost</span></a>
+          <a class="ui-nav-item" href="#compare"><span>Compare</span></a>
           <a class="ui-nav-item" href="#features"><span>Features</span></a>
           <a class="ui-nav-item" href="#run"><span>What you can run</span></a>
           <a class="ui-nav-item" href="#themes"><span>Themes</span></a>
@@ -244,6 +245,158 @@
                 <h3 class="ui-card-title">Runs where you do</h3>
                 <p>Linux, Windows or macOS, on a home server, a VPS or your desktop. Use Docker or rootless Podman, and link several Outpost hosts so you can move instances between them.</p>
               </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Compare ============ -->
+      <section class="container section" id="compare">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">⚖️ How it compares</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">
+              Renting game servers costs you every month. Big panel stacks ask you to run a web server, a database
+              and a separate daemon. Single-game tools stop at one game. Outpost is one app on your own machine
+              that runs all of it.
+            </p>
+
+            <div class="grid grid-3 vs">
+              <article class="ui-card vs-card">
+                <span class="vs-from">Coming from a game-server host?</span>
+                <h3 class="ui-card-title">💸 Stop renting what you already own</h3>
+                <ul>
+                  <li>No monthly fee per server. Use a home server, an old PC or a VPS you already pay for.</li>
+                  <li>Your worlds, saves and backups stay on your disk, not someone else's.</li>
+                  <li>RAM is limited by your hardware, not by a plan tier.</li>
+                  <li>Full file access, any mod, any jar, any launch command.</li>
+                </ul>
+              </article>
+              <article class="ui-card vs-card">
+                <span class="vs-from">Coming from a full panel stack?</span>
+                <h3 class="ui-card-title">🪶 One app instead of five</h3>
+                <ul>
+                  <li>One Node.js process with SQLite built in. No separate web server, database, cache or node daemon to keep alive.</li>
+                  <li>Docker is optional. Game servers can run as sandboxed native processes.</li>
+                  <li><code>install.sh</code> sets up everything, and <code>update.sh</code> test-starts a new build before it touches your live service.</li>
+                  <li>Runs on Linux, Windows and macOS.</li>
+                </ul>
+              </article>
+              <article class="ui-card vs-card">
+                <span class="vs-from">Coming from a Minecraft-only panel?</span>
+                <h3 class="ui-card-title">🧰 Grow past one game</h3>
+                <ul>
+                  <li>Keep Paper, Purpur, Spigot, Vanilla and Bedrock, with Modrinth and CurseForge installs.</li>
+                  <li>Add Valheim, Palworld, CS2, Rust, ARK, Terraria or any Steam App ID.</li>
+                  <li>Run Jellyfin, Vaultwarden, PostgreSQL, Portainer or any container image next to them.</li>
+                  <li>Use the same panel, users and permissions for all of it.</li>
+                </ul>
+              </article>
+            </div>
+
+            <h3 class="sub-title">Side by side</h3>
+            <div class="table-wrap">
+              <table class="ui-table compare">
+                <thead>
+                  <tr>
+                    <th scope="col"><span class="sr-only">Feature</span></th>
+                    <th scope="col">Rented game-server host</th>
+                    <th scope="col">Full panel stack</th>
+                    <th scope="col">Minecraft-only panel</th>
+                    <th scope="col" class="is-us">Outpost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Ongoing cost</th>
+                    <td><span class="mk no"></span>Monthly, per server</td>
+                    <td><span class="mk yes"></span>Your hardware</td>
+                    <td><span class="mk yes"></span>Your hardware</td>
+                    <td class="is-us"><span class="mk yes"></span>Your hardware, no subscription</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Your data stays with you</th>
+                    <td><span class="mk no"></span>On the host's machines</td>
+                    <td><span class="mk yes"></span>Yes</td>
+                    <td><span class="mk yes"></span>Yes</td>
+                    <td class="is-us"><span class="mk yes"></span>Yes, and exportable as one zip</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">What you install</th>
+                    <td><span class="mk yes"></span>Nothing</td>
+                    <td><span class="mk part"></span>Panel, web server, database and node daemon</td>
+                    <td><span class="mk yes"></span>Usually one app</td>
+                    <td class="is-us"><span class="mk yes"></span>One Node.js app; SQLite built in</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Needs Docker</th>
+                    <td>—</td>
+                    <td><span class="mk part"></span>Usually</td>
+                    <td><span class="mk yes"></span>Usually not</td>
+                    <td class="is-us"><span class="mk yes"></span>Optional; native processes are sandboxed</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Games</th>
+                    <td><span class="mk part"></span>Per plan</td>
+                    <td><span class="mk yes"></span>Many, through templates</td>
+                    <td><span class="mk no"></span>One game</td>
+                    <td class="is-us"><span class="mk yes"></span>Minecraft Java and Bedrock, 20+ Steam titles, any App ID</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Web apps, databases &amp; containers</th>
+                    <td><span class="mk no"></span>Rarely</td>
+                    <td><span class="mk part"></span>With custom templates</td>
+                    <td><span class="mk no"></span>No</td>
+                    <td class="is-us"><span class="mk yes"></span>App catalog, Portainer, any image</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Share one server, not the box</th>
+                    <td><span class="mk part"></span>Sub-users on your plan</td>
+                    <td><span class="mk yes"></span>Yes</td>
+                    <td><span class="mk part"></span>Varies</td>
+                    <td class="is-us"><span class="mk yes"></span>Per-instance permissions, quotas, memory caps</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Restore one file from a backup</th>
+                    <td><span class="mk part"></span>Often a paid add-on</td>
+                    <td><span class="mk part"></span>Whole backups</td>
+                    <td><span class="mk part"></span>Varies</td>
+                    <td class="is-us"><span class="mk yes"></span>Line-by-line diff, then restore one file</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Router port forwarding</th>
+                    <td>—</td>
+                    <td><span class="mk no"></span>Done by hand</td>
+                    <td><span class="mk no"></span>Done by hand</td>
+                    <td class="is-us"><span class="mk yes"></span>UPnP from the panel, with an internet test</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Host OS</th>
+                    <td>—</td>
+                    <td><span class="mk part"></span>Mostly Linux</td>
+                    <td><span class="mk part"></span>Varies</td>
+                    <td class="is-us"><span class="mk yes"></span>Linux, Windows, macOS</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="muted legend">
+              <span class="mk yes"></span>strong fit · <span class="mk part"></span>partly / depends ·
+              <span class="mk no"></span>weak fit. Columns describe what's typical of each kind of tool. Individual
+              products vary, so check the one you're using.
+            </p>
+
+            <div class="ui-card honest">
+              <h3 class="ui-card-title">🤝 When a host is still the better pick</h3>
+              <p>
+                Outpost runs on hardware you provide, so you're responsible for keeping that machine online.
+                If you don't have a spare machine, need a DDoS-protected network, or want someone else on call
+                when the server goes down at 3 a.m., renting is the simpler choice. Outpost
+                works best when you already have a box and want full control of it.
+              </p>
             </div>
           </div>
         </div>
