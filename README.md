@@ -34,4 +34,6 @@ To link to a specific theme, add `?theme=` with one of `outpost`, `xp`, `minecra
 
 ## Keeping it in sync
 
+The content currently reflects Outpost up to commit `f7fa622` (Oct 20, 2026). When new commits land, add them to the **What's new** section, tag new features with `<span class="new-tag">New</span>`, and drop the tags from features that are no longer recent.
+
 When Outpost changes a theme, copy the matching token block and component rules from `web/src/index.css` into `assets/styles.css`. If a theme is added, also add its entry to `THEMES` in `assets/app.js` and to the id list in the inline script in `index.html`.

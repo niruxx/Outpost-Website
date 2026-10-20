@@ -111,7 +111,7 @@
       <!-- ============ Hero ============ -->
       <section class="hero container" id="top">
         <div class="hero-copy">
-          <p class="hero-eyebrow">🧭 Self-hosted control panel</p>
+          <a class="hero-eyebrow" href="#whats-new">🆕 New: Counter-Strike 2 management →</a>
           <h1 class="hero-title">One panel for your servers, apps, containers and games.</h1>
           <p class="hero-lead">
             Spin up Minecraft and Steam game servers, one-click web apps, Portainer, any Docker or Podman
@@ -255,6 +255,62 @@
         </div>
       </section>
 
+      <!-- ============ What's new ============ -->
+      <section class="container section" id="whats-new">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🆕 What's new</h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <ol class="changelog">
+              <li class="ui-card change">
+                <span class="change-date">Oct 20, 2026</span>
+                <div>
+                  <h3 class="ui-card-title">🔫 Counter-Strike 2, fully managed</h3>
+                  <p>Every CS2 server now has its own tab, with game modes, surf and bhop presets, a Workshop map library, bots, an admin setup flow and one-click Metamod and CounterStrikeSharp plugins. <a href="#cs2">See what's in it →</a></p>
+                </div>
+              </li>
+              <li class="ui-card change">
+                <span class="change-date">Oct 20, 2026</span>
+                <div>
+                  <h3 class="ui-card-title">⚡ A lighter panel</h3>
+                  <p>The UI uses far less CPU and GPU while it's open. Polling pauses in background tabs, console updates arrive in batches, and a <b>Reduce effects</b> switch turns off animation and blur.</p>
+                </div>
+              </li>
+              <li class="ui-card change">
+                <span class="change-date">Oct 19, 2026</span>
+                <div>
+                  <h3 class="ui-card-title">🧰 The big expansion</h3>
+                  <p>Outpost's largest update so far:</p>
+                  <ul class="tag-list">
+                    <li>🧵 Modded Minecraft &amp; modpacks</li>
+                    <li>🍷 Wine for Windows-only servers</li>
+                    <li>🧰 Steam Workshop</li>
+                    <li>☕ Java version manager</li>
+                    <li>🎛️ RCON consoles</li>
+                    <li>🔄 Automatic game updates</li>
+                    <li>📜 Console log history</li>
+                    <li>⏪ World Rewind</li>
+                    <li>📂 SFTP</li>
+                    <li>☁️ Off-site backups</li>
+                    <li>🗄️ Per-server databases</li>
+                    <li>📏 Resource limits</li>
+                    <li>🔑 API keys</li>
+                    <li>📦 Server templates</li>
+                    <li>🌐 Public status pages</li>
+                    <li>🌍 Translations</li>
+                    <li>⬆️ Panel update notices</li>
+                  </ul>
+                  <p><a href="#features">Browse every feature →</a></p>
+                </div>
+              </li>
+            </ol>
+            <p class="muted"><a href="https://github.com/niruxx/outpost/commits/main">Full commit history on GitHub →</a></p>
+          </div>
+        </div>
+      </section>
+
       <!-- ============ Why ============ -->
       <section class="container section" id="why">
         <div class="ui-window">
@@ -291,7 +347,7 @@
               <article class="ui-card why">
                 <span class="why-icon">🌙</span>
                 <h3 class="ui-card-title">Handles the 3 a.m. crash</h3>
-                <p>Auto-restart on crash, nightly restarts with an in-game warning, scheduled snapshots with retention, and Discord or webhook alerts when something stops or fails.</p>
+                <p>Auto-restart on crash, nightly restarts with an in-game warning, automatic game updates, scheduled snapshots copied off-site, and Discord or webhook alerts when something stops or fails.</p>
               </article>
               <article class="ui-card why">
                 <span class="why-icon">🖥️</span>
@@ -336,14 +392,15 @@
                   <li>Docker is optional. Game servers can run as sandboxed native processes.</li>
                   <li><code>install.sh</code> sets up everything, and <code>update.sh</code> test-starts a new build before it touches your live service.</li>
                   <li>Runs on Linux, Windows and macOS.</li>
+                  <li>SFTP, API keys, resource limits and per-server databases are built in.</li>
                 </ul>
               </article>
               <article class="ui-card vs-card">
                 <span class="vs-from">Coming from a Minecraft-only panel?</span>
                 <h3 class="ui-card-title">🧰 Grow past one game</h3>
                 <ul>
-                  <li>Keep Paper, Purpur, Spigot, Vanilla and Bedrock, with Modrinth and CurseForge installs.</li>
-                  <li>Add Valheim, Palworld, CS2, Rust, ARK, Terraria or any Steam App ID, including Windows-only servers through Wine.</li>
+                  <li>Keep Paper, Purpur, Spigot, Vanilla, Fabric, Quilt, Forge, NeoForge, Modrinth modpacks and Bedrock, with the right Java picked for you.</li>
+                  <li>Add Valheim, Palworld, CS2, Rust, ARK, Arma 3, Terraria or any Steam App ID, with Steam Workshop mods and Windows-only servers through Wine.</li>
                   <li>Run Jellyfin, Vaultwarden, PostgreSQL, Portainer or any container image next to them.</li>
                   <li>Use the same panel, users and permissions for all of it.</li>
                 </ul>
@@ -396,14 +453,14 @@
                     <td><span class="mk part"></span>Per plan</td>
                     <td><span class="mk yes"></span>Many, through templates</td>
                     <td><span class="mk no"></span>One game</td>
-                    <td class="is-us"><span class="mk yes"></span>Minecraft Java and Bedrock, 20+ Steam titles, any App ID</td>
+                    <td class="is-us"><span class="mk yes"></span>Vanilla to modded Minecraft, 20+ Steam titles, any App ID</td>
                   </tr>
                   <tr>
                     <th scope="row">Windows-only servers on Linux</th>
                     <td>—</td>
                     <td><span class="mk part"></span>With Wine-based templates</td>
                     <td><span class="mk no"></span>No</td>
-                    <td class="is-us"><span class="mk yes"></span>Built-in Wine, auto-detected for <code>.exe</code></td>
+                    <td class="is-us"><span class="mk yes"></span>Built-in Wine, per-instance prefix and winetricks</td>
                   </tr>
                   <tr>
                     <th scope="row">Web apps, databases &amp; containers</th>
@@ -418,6 +475,13 @@
                     <td><span class="mk yes"></span>Yes</td>
                     <td><span class="mk part"></span>Varies</td>
                     <td class="is-us"><span class="mk yes"></span>Per-instance permissions, quotas, memory caps</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Steam Workshop mods</th>
+                    <td><span class="mk part"></span>Some games</td>
+                    <td><span class="mk part"></span>Per template</td>
+                    <td><span class="mk no"></span>No</td>
+                    <td class="is-us"><span class="mk yes"></span>Zomboid, Garry's Mod, ARK, Arma 3, Black Ops III, CS2 maps</td>
                   </tr>
                   <tr>
                     <th scope="row">Restore one file from a backup</th>
@@ -470,26 +534,71 @@
             <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
           <div class="ui-window-body">
+            <p class="lead">Everything below ships in Outpost today. Items tagged <span class="new-tag">New</span> landed in the last few days.</p>
+
+            <h3 class="sub-title feat-group">🎮 Run any server</h3>
             <div class="grid grid-3 features">
               <article class="ui-card feat"><h3 class="ui-card-title">🏗️ One-click installs</h3><p>Pick a platform and version from the live catalog and Outpost downloads and installs it. Spigot is built from source with BuildTools.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🖥️ Live console</h3><p>Real-time output over WebSocket, command history (↑/↓) and streamed install and update progress.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">📊 Metrics everywhere</h3><p>Host gauges and throughput on the dashboard; per-instance CPU, RAM, network, disk I/O and uptime.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🧩 Plugins &amp; mods</h3><p>One-click installs from Modrinth and CurseForge: plugins, data packs and Bedrock add-ons. You can also upload BepInEx and <code>.pak</code> mods.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">📸 Snapshots</h3><p>Take them manually or on a schedule, with retention. Restore everything, or diff one file against the live copy and restore just that file.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🧵 Modded Minecraft <span class="new-tag">New</span></h3><p>Fabric, Quilt, Forge, NeoForge, Mohist and SpongeForge, or a whole Modrinth <code>.mrpack</code> modpack with its exact loader version. Updates keep your mods in place.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🍷 Windows servers on Linux <span class="new-tag">New</span></h3><p>Windows-only servers like Black Ops III run through Wine. Each instance gets its own prefix in its folder, and a Wine tab sets the Windows version, DLL overrides, winetricks dependencies and a virtual screen.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">☕ Java version manager <span class="new-tag">New</span></h3><p>Every Minecraft version starts with the Java it needs, from 8 to 21 and newer. Install Eclipse Temurin in one click, or pin a version per instance.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🚀 Launch control</h3><p>Choose the exact binary or jar, arguments, env vars, ready-detection and stop/restart behaviour for each instance.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">⌨️ Custom servers</h3><p>Run any Linux binary or shell script with <code>{{PORT}}</code>-style variables and process-group shutdown.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🍷 Windows servers on Linux</h3><p>Windows-only dedicated servers run through Wine. Outpost detects a <code>.exe</code> automatically, or you can switch Wine on in Launch settings. Each instance gets its own Wine prefix in its folder, still inside the sandbox.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">🐳 Docker &amp; Podman</h3><p>Run any image in a container that only sees its own folder, with presets for popular game images.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🌐 Multi-node</h3><p>Link other Outpost hosts and transfer an instance's files and settings between them.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🔌 UPnP port forwarding</h3><p>Forward ports and ranges on your router from the panel, then test the forward step by step, including from the internet.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🧱 Firewall</h3><p>Open and close ports through UFW or firewalld. SSH and the panel itself can't be cut off by accident.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">🧩 Mods &amp; content</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">🧩 Plugins &amp; mods</h3><p>One-click installs from Modrinth and CurseForge that match your loader and Minecraft version: plugins, mods, data packs and Bedrock add-ons. You can also upload BepInEx and <code>.pak</code> mods.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🧰 Steam Workshop <span class="new-tag">New</span></h3><p>Paste item or collection links for Project Zomboid, Garry's Mod, ARK, Arma 3 or Black Ops III. Outpost checks each item with Steam, installs it the way that game expects, and lets you reorder the load order.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔫 CS2 plugins <span class="new-tag">New</span></h3><p>One-click Metamod and CounterStrikeSharp, a plugin catalog, installs from any GitHub link, and a switch back to vanilla when a CS2 update breaks things. <a href="#cs2">More →</a></p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">⏪ World Rewind <span class="new-tag">New</span></h3><p>Scheduled restore points for Minecraft worlds, Java and Bedrock, plus <code>level.dat</code> rollback.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">🖥️ Day-to-day running</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">🖥️ Live console</h3><p>Real-time output over WebSocket, command history (↑/↓) and streamed install and update progress.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🎛️ RCON consoles <span class="new-tag">New</span></h3><p>Source RCON for Source games, Minecraft, ARK and Palworld, and WebRCON for Rust. Outpost switches it on in the game, generates the password, and can send the console, player actions and stops over RCON.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📜 Console log history <span class="new-tag">New</span></h3><p>Every console line is saved per day and compressed. You can search, download or delete a day's log, with a retention setting (30 days by default).</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔄 Automatic updates <span class="new-tag">New</span></h3><p>Outpost checks Steam builds, Paper and Purpur builds and Bedrock releases on a schedule. When there's an update, it warns players in-game, snapshots, updates and restarts. You can also choose to only get notified.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📊 Metrics everywhere</h3><p>Host gauges and throughput on the dashboard; per-instance CPU, RAM, network, disk I/O and uptime.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">👤 Players &amp; operators</h3><p>Op, kick, ban, whitelist, broadcasts, time, weather and difficulty, all from one page.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">⏰ Scheduled tasks</h3><p>Restart nightly with an in-game warning first, send console commands, or start and stop instances on a cron schedule.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🔔 Discord &amp; webhooks</h3><p>Get told when an instance starts, stops or crashes, or when a scheduled snapshot or task fails.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🔐 2FA &amp; audit log</h3><p>Authenticator-app codes with recovery codes, plus a searchable log of who signed in and what they changed.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">♻️ Auto-restart</h3><p>Bring an instance back when it crashes, or whenever it stops, with a delay and an optional attempt limit.</p></article>
-              <article class="ui-card feat"><h3 class="ui-card-title">🛑 Suspension</h3><p>Stop and lock an instance (for non-payment or a TOS breach). Its owners lose panel and API access until you lift it.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">⏰ Scheduled tasks</h3><p>Restart nightly with an in-game warning first, send console commands, or start and stop instances on a cron schedule.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔔 Discord &amp; webhooks</h3><p>Get told when an instance starts, stops or crashes, when a scheduled snapshot or task fails, or when a disk limit is reached.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">💾 Backups &amp; data</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">📸 Snapshots</h3><p>Take them manually or on a schedule, with retention. Restore everything, or diff one file against the live copy and restore just that file.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">☁️ Off-site backups <span class="new-tag">New</span></h3><p>Every snapshot is copied to AWS S3, Backblaze B2, Wasabi, Cloudflare R2, any S3-compatible storage, or another machine over SFTP, keeping the newest copies per instance.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🗄️ Per-server databases <span class="new-tag">New</span></h3><p>One-click MySQL or MariaDB databases for plugins. Each gets its own user that can only reach it, and Outpost shows the JDBC URL and can rotate the password.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📦 Server templates <span class="new-tag">New</span></h3><p>Export any instance as a template, with passwords and tokens stripped. Then create new servers from it, filling in variables like <code>{{MOTD}}</code> as you go.</p></article>
               <article class="ui-card feat"><h3 class="ui-card-title">💾 Backup &amp; reset</h3><p>Export or import the whole install as one zip, update servers in place without losing worlds, and factory-reset behind three confirmations.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">👥 Access &amp; security</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">📂 SFTP <span class="new-tag">New</span></h3><p>Per-user SFTP logins scoped to one instance, with the same read or write rights as in the panel. SFTP has its own password, so it can't sidestep 2FA. SSH keys work too.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔑 API keys <span class="new-tag">New</span></h3><p>Personal keys for scripts, bots and Discord integrations. A key acts as its owner, can be read-only or expire, and is stored only as a hash.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">📏 Resource limits <span class="new-tag">New</span></h3><p>CPU, memory, process and disk caps for every instance. On Linux the kernel enforces them, and containers get the same values as Docker/Podman limits.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔐 2FA &amp; audit log</h3><p>Authenticator-app codes with recovery codes, plus an audit log of who did what, with IP and device, retention and CSV export.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🧱 Firewall</h3><p>Open and close ports through UFW or firewalld. SSH and the panel itself can't be cut off by accident.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🛑 Suspension</h3><p>Stop and lock an instance (for non-payment or a TOS breach). Its owners lose panel and API access until you lift it.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">🌐 Network &amp; sharing</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">🌐 Public status pages <span class="new-tag">New</span></h3><p>An unguessable link showing whether a server is up, its address and who's playing, plus an SVG badge for your website or Discord. No sign-in needed.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🔌 UPnP port forwarding</h3><p>Forward ports and ranges on your router from the panel, then test the forward step by step, including from the internet.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🌐 Multi-node</h3><p>Link other Outpost hosts and transfer an instance's files and settings between them.</p></article>
+            </div>
+
+            <h3 class="sub-title feat-group">🎨 The panel itself</h3>
+            <div class="grid grid-3 features">
+              <article class="ui-card feat"><h3 class="ui-card-title">⚡ Lighter UI <span class="new-tag">New</span></h3><p>Far less CPU and GPU while the panel is open. Polling pauses in background tabs, and a <b>Reduce effects</b> switch turns off animation and blur.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">🌍 Translations <span class="new-tag">New</span></h3><p>Español, Deutsch, Français and Português (Brasil) cover navigation, the dashboard and common screens, with more on the way.</p></article>
+              <article class="ui-card feat"><h3 class="ui-card-title">⬆️ Update notices <span class="new-tag">New</span></h3><p>The corner shows the version and commit you're running. When newer commits land, admins see what changed and a reminder to run <code>./update.sh</code>.</p></article>
             </div>
           </div>
         </div>
@@ -531,16 +640,71 @@
                     <thead><tr><th>Game</th><th>Mods</th><th>Port</th></tr></thead>
                     <tbody>
                       <tr><td>⛏️ Minecraft Java — Paper · Purpur · Spigot · Vanilla</td><td>Plugins, data packs</td><td><code>25565/tcp</code></td></tr>
+                      <tr><td>🧵 Minecraft Java — Fabric · Quilt · Forge · NeoForge · Mohist · SpongeForge <span class="new-tag">New</span></td><td>Mods (+ plugins on Mohist / Sponge)</td><td><code>25565/tcp</code></td></tr>
+                      <tr><td>📦 Modrinth modpacks (<code>.mrpack</code>) <span class="new-tag">New</span></td><td>The pack's mods and configs</td><td><code>25565/tcp</code></td></tr>
                       <tr><td>🪨 Minecraft Bedrock</td><td><code>.mcpack</code> / <code>.mcaddon</code></td><td><code>19132/udp</code></td></tr>
+                      <tr><td>🔫 Counter-Strike 2 <span class="new-tag">New tab</span></td><td>Metamod + CounterStrikeSharp, Workshop maps</td><td><code>27015/udp</code></td></tr>
+                      <tr><td>🔫 CS:GO, Source, 1.6 · 🎩 TF2 · ⚡ Quake</td><td>—</td><td><code>27015/udp</code></td></tr>
+                      <tr><td>🛠️ Garry's Mod</td><td>Workshop addons &amp; collections</td><td><code>27015/udp</code></td></tr>
+                      <tr><td>🦖 ARK: Survival Evolved</td><td>Workshop mods (load order)</td><td><code>7777/udp</code></td></tr>
+                      <tr><td>🪖 Arma 3 <span class="new-tag">New</span></td><td>Workshop mods + keys</td><td><code>2302/udp</code></td></tr>
+                      <tr><td>🔫 Call of Duty: Black Ops III, via Wine on Linux <span class="new-tag">New</span></td><td>Workshop maps &amp; mods</td><td><code>27017/udp</code></td></tr>
+                      <tr><td>🧟 Project Zomboid</td><td>Workshop items, written into its <code>.ini</code></td><td><code>16261/udp</code></td></tr>
                       <tr><td>🪖 Valheim</td><td>BepInEx</td><td><code>2456/udp</code></td></tr>
                       <tr><td>🐾 Palworld</td><td><code>.pak</code> mods</td><td><code>8211/udp</code></td></tr>
-                      <tr><td>🔫 Counter-Strike 2, CS:GO, Source, 1.6</td><td>—</td><td><code>27015/udp</code></td></tr>
-                      <tr><td>🏝️ Rust, ARK, 7 Days to Die, Satisfactory</td><td>—</td><td>game default</td></tr>
-                      <tr><td>🧟 Project Zomboid · 🌳 Terraria · 🎩 TF2</td><td>—</td><td>game default</td></tr>
-                      <tr><td>🍷 Windows-only dedicated servers: SteamCMD fetches the Windows build, Wine runs it</td><td>—</td><td>game default</td></tr>
-                      <tr><td>🎯 Any Steam App ID</td><td>—</td><td>your choice</td></tr>
+                      <tr><td>🏝️ Rust, 7 Days to Die, Satisfactory, Unturned · 🌳 Terraria</td><td>—</td><td>game default</td></tr>
+                      <tr><td>🎯 Any Steam App ID, Windows-only ones too</td><td>—</td><td>your choice</td></tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Counter-Strike 2 ============ -->
+      <section class="container section" id="cs2">
+        <div class="ui-window">
+          <div class="ui-window-header">
+            <h2 class="ui-window-title">🔫 Counter-Strike 2, fully managed <span class="new-tag">New</span></h2>
+            <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="ui-window-body">
+            <p class="lead">
+              Every CS2 instance gets its own <b>CS2</b> tab. Settings are written to the server's config and launch
+              command, so they apply on the next start, or straight away with <b>Apply now</b>.
+            </p>
+            <div class="grid grid-2 cs2-split">
+              <div>
+                <h3 class="sub-title">Server setup</h3>
+                <ul class="cs2-list">
+                  <li><b>🎮 Game mode &amp; map</b><span>Casual, competitive, wingman, deathmatch, arms race or custom. Pick the start map from installed maps or your Workshop library, and use <b>Change map now</b> on a running server.</span></li>
+                  <li><b>⚡ Presets</b><span><b>Surf</b> and <b>Bhop</b> set every movement cvar those maps need, so they work straight away. Practice, competitive, deathmatch and casual presets too, and your own extra cvars are kept.</span></li>
+                  <li><b>🗺️ Map library</b><span>Paste a Workshop link, ID or collection. Outpost checks each item with Steam and lists it with a preview. Maps you upload or the server downloads show up on their own.</span></li>
+                  <li><b>🤖 Server &amp; bots</b><span>Hostname, password, slots, server token (GSLT) to be listed publicly, LAN mode, bot count, difficulty and fill.</span></li>
+                  <li><b>📋 Commands &amp; admins</b><span>Quick actions like restart round, end warmup and add or kick bots, a searchable command list, and a guided way to become an admin, through RCON or by listing SteamID64s.</span></li>
+                  <li><b>🛠️ Safe custom cvars</b><span>Add any extra cvar. Dangerous ones like <code>rcon_password</code>, <code>exec</code> and <code>quit</code> are refused.</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="sub-title">🧩 Plugins in one click</h3>
+                <p class="muted">All server-side, so players install nothing.</p>
+                <ol class="cs2-steps">
+                  <li><b>Install</b><span>Downloads Metamod:Source 2.0 and CounterStrikeSharp with its .NET runtime. Outpost re-adds Metamod to <code>gameinfo.gi</code> before every start, because CS2 updates replace that file.</span></li>
+                  <li><b>Pick plugins</b><span>From the catalog, or paste any CounterStrikeSharp plugin's GitHub link. Outpost installs the latest release and works out where its files go.</span></li>
+                  <li><b>Manage</b><span>Turn plugins on or off, check for updates, update or remove them. Configs you edited are kept.</span></li>
+                </ol>
+                <ul class="tag-list">
+                  <li>🏎️ Speedometer HUD + WASD</li>
+                  <li>⏱️ SharpTimer</li>
+                  <li>🛡️ CS2-SimpleAdmin</li>
+                  <li>💣 Retakes</li>
+                  <li>🏆 MatchZy</li>
+                  <li>🔗 Any GitHub plugin</li>
+                </ul>
+                <div class="ui-card cs2-note">
+                  <p><b>When a CS2 update breaks plugins:</b> <b>Switch to vanilla</b> starts CS2 with no plugins at all, without deleting anything, and <b>Turn plugins on</b> puts them back. Outpost also refuses SwiftlyS2 plugins, which can't load in CounterStrikeSharp, and flags any that are already installed.</p>
                 </div>
               </div>
             </div>
@@ -588,14 +752,16 @@
             <div class="tab-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script">
               <p>
                 On <b>Debian/Ubuntu, Arch or Fedora</b>, <code>install.sh</code> does everything for you. It installs
-                Node.js, Java, the bubblewrap sandbox, a container engine and Wine for Windows-only servers, then builds Outpost, runs a health
-                check and optionally sets up <code>outpost.service</code>.
+                Node.js, Java, the bubblewrap sandbox, a container engine and ICU (needed by CS2 plugins), then builds
+                Outpost, runs a health check and optionally sets up <code>outpost.service</code>. It also offers Wine for
+                Windows-only servers; add <code>--wine</code> to install it without asking.
               </p>
               <div class="ui-terminal">
                 <div class="term-bar"><span>bash</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
 <pre><code>git clone https://github.com/niruxx/outpost Outpost &amp;&amp; cd Outpost
 ./install.sh                    <span class="c"># asks as it goes (Docker by default)</span>
 ./install.sh --engine=podman    <span class="c"># rootless Podman — no root daemon</span>
+./install.sh --wine             <span class="c"># also install Wine + winetricks</span>
 ./install.sh -y                 <span class="c"># accept every default</span></code></pre>
               </div>
             </div>
@@ -635,6 +801,8 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
               <p>
                 <code>update.sh</code> backs up your data first, pulls, rebuilds and test-starts the new build
                 before it touches your live service. If the new build fails, you can roll back instantly.
+                You don't have to keep checking for updates: the panel looks every 6 hours (it never pulls on its own),
+                and admins see a banner listing what's new.
               </p>
               <div class="ui-terminal">
                 <div class="term-bar"><span>bash</span><button class="ui-btn ui-btn-xs copy" type="button">Copy</button></div>
@@ -652,10 +820,10 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
             <h3 class="sub-title">What you need</h3>
             <ul class="needs">
               <li><b>🟩 Node.js 22.5+</b> <span>(24 recommended) for the panel itself</span></li>
-              <li><b>☕ Java 21+</b> <span>for Vanilla, Paper, Purpur and Spigot servers</span></li>
+              <li><b>☕ Java 21+</b> <span>for Minecraft servers. Older versions need older Java, which Outpost installs in one click</span></li>
               <li><b>🛠️ JDK + git</b> <span>to build Spigot from source</span></li>
               <li><b>🧱 32-bit libraries</b> <span>for Steam-based servers on Linux</span></li>
-              <li><b>🍷 Wine</b> <span>for Windows-only servers on Linux (<code>install.sh</code> sets it up)</span></li>
+              <li><b>🍷 Wine</b> <span>(Linux, optional) for Windows-only servers like Black Ops III: <code>./install.sh --wine</code></span></li>
             </ul>
           </div>
         </div>
@@ -675,6 +843,8 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
               <li><b>Safe uploads</b><span>File names are reduced to a plain name, so <code>../../file</code> can't land outside the folder.</span></li>
               <li><b>Clean environment</b><span>Instances never inherit the panel's environment variables or credentials.</span></li>
               <li><b>Locked-down containers</b><span>Each container sees only its own folder, with memory, CPU and process limits and <code>no-new-privileges</code>.</span></li>
+              <li><b>Kernel-enforced limits</b><span>On Linux, each instance's CPU, memory and process caps are enforced by the kernel through a systemd scope around its sandbox. Disk caps block writes once they're hit.</span></li>
+              <li><b>Separate credentials</b><span>SFTP has its own password so it can't sidestep 2FA, API keys are stored only as hashes, and templates strip passwords and tokens on export.</span></li>
             </ul>
           </div>
         </div>
@@ -684,15 +854,23 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
             <span class="win-ctl" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
           <div class="ui-window-body">
+            <h3 class="sub-title">Recently shipped</h3>
             <ul class="roadmap">
-              <li class="done">Material 3 redesign with list / grid / box views</li>
-              <li class="done">Custom launch executables, jars and script servers</li>
-              <li class="done">Snapshots with per-file diff &amp; restore</li>
-              <li class="done">UPnP port forwarding and auto-restart</li>
-              <li class="done">Process sandbox and Docker/Podman instances</li>
-              <li class="done">General-purpose platform: app catalog, Portainer, web UI links</li>
-              <li>Mohist and SpongeForge instances</li>
-              <li>Restore view for Minecraft's own auto-save states</li>
+              <li class="done">Counter-Strike 2 tab and one-click CS2 plugins</li>
+              <li class="done">Lighter UI with a <i>Reduce effects</i> switch</li>
+              <li class="done">Modded Minecraft, modpacks, Mohist and SpongeForge</li>
+              <li class="done">World Rewind restore points for Minecraft worlds</li>
+              <li class="done">Wine, Steam Workshop and Black Ops III</li>
+              <li class="done">SFTP, off-site backups, databases, resource limits and API keys</li>
+            </ul>
+            <h3 class="sub-title">Coming next</h3>
+            <ul class="roadmap">
+              <li>Proxy servers: Velocity, BungeeCord and Waterfall networks</li>
+              <li>CurseForge modpacks (server packs)</li>
+              <li>Per-user Steam accounts with Steam Guard</li>
+              <li>Password reset by email, and Discord / Google / LDAP sign-in</li>
+              <li>CS2 live player list, ban list, map rotation, match setup and CSTV demos</li>
+              <li>Billing integration (WHMCS, Paymenter) for hosting providers</li>
             </ul>
             <p class="muted">Coming from <b>MultiCraft</b>? Outpost is the same project renamed. You can upgrade in place: the old names keep working, and nobody gets logged out.</p>
           </div>

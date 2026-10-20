@@ -2313,3 +2313,186 @@ p {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ==========================================================================
+ * What's new, feature groups and the CS2 spotlight
+ * ========================================================================== */
+a.hero-eyebrow {
+  text-decoration: none;
+}
+a.hero-eyebrow:hover {
+  text-decoration: underline;
+}
+.new-tag {
+  display: inline-block;
+  vertical-align: 2px;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: rgb(var(--accent-400));
+  color: rgb(var(--accent-on));
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: none;
+  white-space: nowrap;
+}
+.ui-window-title .new-tag {
+  vertical-align: 5px;
+}
+.changelog {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.change {
+  display: grid;
+  gap: 6px 20px;
+}
+@media (min-width: 720px) {
+  .change { grid-template-columns: 120px 1fr; }
+}
+.change-date {
+  color: rgb(var(--accent-400));
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+}
+.change p + p,
+.change .tag-list + p {
+  margin-top: 8px;
+}
+.tag-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag-list li {
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgb(var(--surface-800));
+  border: 1px solid rgb(var(--surface-700));
+  color: rgb(var(--ink-200));
+  font-size: 0.8rem;
+}
+.feat-group {
+  margin: 26px 0 12px;
+}
+.feat-group:first-of-type {
+  margin-top: 4px;
+}
+.cs2-split {
+  gap: 28px;
+}
+.cs2-list,
+.cs2-steps {
+  margin: 0;
+  padding: 0;
+}
+.cs2-list {
+  list-style: none;
+}
+.cs2-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(var(--surface-700));
+}
+.cs2-list li:last-child {
+  border-bottom: 0;
+}
+.cs2-list > li > b,
+.cs2-steps > li > b {
+  display: block;
+  color: rgb(var(--ink-50));
+}
+.cs2-list span b {
+  color: rgb(var(--ink-100));
+}
+.cs2-list span,
+.cs2-steps span {
+  color: rgb(var(--ink-300));
+  font-size: 0.92rem;
+}
+.cs2-steps {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cs2-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 40px;
+}
+.cs2-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgb(var(--accent-400));
+  color: rgb(var(--accent-on));
+  font-weight: 800;
+  font-size: 0.86rem;
+}
+.cs2-note {
+  margin-top: 16px;
+  border-left: 4px solid rgb(var(--accent-400));
+}
+
+[data-theme='xp'] .new-tag,
+[data-theme='vista'] .new-tag,
+[data-theme='xp'] .tag-list li,
+[data-theme='vista'] .tag-list li {
+  border-radius: 3px;
+}
+[data-theme='xp'] .tag-list li {
+  background: #fff;
+  border-color: #7f9db9;
+}
+[data-theme='xp'] .ui-window-header .new-tag {
+  background: #fff;
+  color: #0050ee;
+}
+[data-theme='minecraft'] .new-tag {
+  border-radius: 0;
+  background: #ffff55;
+  color: #3f3f00;
+}
+[data-theme='minecraft'] .tag-list li {
+  border-radius: 0;
+  background: #8b8b8b;
+  border: 2px solid #000;
+  color: #fff;
+  text-shadow: 2px 2px 0 #3f3f3f;
+}
+[data-theme='minecraft'] .change-date {
+  color: #ffff55;
+}
+[data-theme='minecraft'] .cs2-steps li::before {
+  border-radius: 0;
+  background: #4c8a2e;
+  color: #fff;
+}
+[data-theme='minecraft'] .cs2-list li {
+  border-color: #8b8b8b;
+}
+[data-theme='aero'] .tag-list li {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+[data-theme='aero'] .new-tag {
+  background: linear-gradient(180deg, #b4ec7e 0%, #79cf3a 50%, #4f9c20 100%);
+  color: #18420a;
+}
