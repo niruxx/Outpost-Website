@@ -77,8 +77,8 @@
         </a>
         <nav class="nav-links" aria-label="Sections">
           <a class="ui-nav-item" href="#demo"><span>Live demo</span></a>
-          <a class="ui-nav-item" href="#why"><span>Why Outpost</span></a>
-          <a class="ui-nav-item" href="#compare"><span>Compare</span></a>
+          <a class="ui-nav-item" href="#overview"><span>Overview</span></a>
+          <a class="ui-nav-item" href="#screenshots"><span>Screenshots</span></a>
           <a class="ui-nav-item" href="#features"><span>Features</span></a>
           <a class="ui-nav-item" href="#themes"><span>Themes</span></a>
           <a class="ui-nav-item" href="#install"><span>Install</span></a>
@@ -112,7 +112,7 @@
       <section class="hero container" id="top">
         <div class="hero-copy">
           <a class="hero-eyebrow" href="#whats-new">🆕 New: Counter-Strike 2 management →</a>
-          <h1 class="hero-title">One panel for your servers, apps, containers and games.</h1>
+          <h1 class="hero-title">Your servers.<br>Your workspace.<br>Your rules.</h1>
           <p class="hero-lead">
             Spin up Minecraft and Steam game servers, one-click web apps, Portainer, any Docker or Podman
             image and your own scripts — each one sandboxed, metered and shareable, all from your browser.
@@ -129,66 +129,12 @@
           </ul>
         </div>
 
-        <!-- A live mock of the dashboard; it re-skins with whichever theme is picked. -->
-        <figure class="mock" aria-label="Illustration of the Outpost dashboard">
-          <div class="mock-chrome" aria-hidden="true">
-            <i></i><i></i><i></i>
-            <span class="mock-url">localhost:8642</span>
-          </div>
-          <div class="mock-app ui-app">
-            <aside class="mock-side ui-sidebar">
-              <div class="mock-brand">
-                <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo-mark" /></svg>
-                <b>Outpost</b>
-              </div>
-              <ul class="mock-nav">
-                <li class="ui-nav-item is-active"><span class="bg-secondary-container">🎮 Instances</span></li>
-                <li class="ui-nav-item"><span>🐳 Docker</span></li>
-                <li class="ui-nav-item"><span>🧱 Firewall</span></li>
-                <li class="ui-nav-item"><span>👥 Users</span></li>
-                <li class="ui-nav-item"><span>🧾 Audit log</span></li>
-                <li class="ui-nav-item"><span>⚙️ Configuration</span></li>
-              </ul>
-              <div class="mock-account ui-sidebar-panel">
-                <span class="avatar">A</span>
-                <span><b>admin</b><small>Administrator</small></span>
-              </div>
-            </aside>
-            <div class="mock-main ui-main">
-              <div class="mock-head">
-                <span class="ui-page-title">Instances</span>
-                <span class="ui-btn ui-btn-sm ui-btn-primary">＋ New instance</span>
-              </div>
-              <div class="mock-gauges">
-                <div class="ui-card gauge"><small>CPU</small><b>23%</b><span class="bar"><i style="width:23%"></i></span></div>
-                <div class="ui-card gauge"><small>Memory</small><b>6.1 / 16 GB</b><span class="bar"><i style="width:38%"></i></span></div>
-                <div class="ui-card gauge"><small>Disk</small><b>41%</b><span class="bar"><i style="width:41%"></i></span></div>
-              </div>
-              <div class="mock-list">
-                <div class="ui-card inst">
-                  <span class="emblem" style="--e1:#1f3d1a;--e2:#14240f">⛏️</span>
-                  <span class="inst-name"><b>Survival SMP</b><small>Paper 1.21 · 25565/tcp</small></span>
-                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
-                </div>
-                <div class="ui-card inst">
-                  <span class="emblem" style="--e1:#3a2d1a;--e2:#21190f">🪖</span>
-                  <span class="inst-name"><b>Vikings</b><small>Valheim · 2456/udp</small></span>
-                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
-                </div>
-                <div class="ui-card inst">
-                  <span class="emblem" style="--e1:#173a4a;--e2:#0f2330">🎞️</span>
-                  <span class="inst-name"><b>Jellyfin</b><small>Catalog app · 8096/tcp</small></span>
-                  <span class="ui-badge is-on"><i class="dot"></i>Running</span>
-                </div>
-                <div class="ui-card inst">
-                  <span class="emblem" style="--e1:#20262b;--e2:#0f1316">🐾</span>
-                  <span class="inst-name"><b>Palworld</b><small>Steam · 8211/udp</small></span>
-                  <span class="ui-badge"><i class="dot"></i>Stopped</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figcaption>Pick a theme up top and watch the panel change, or <a href="#demo">try the live demo ↓</a></figcaption>
+        <figure class="product-shot hero-shot">
+          <div class="shot-label"><span class="dot"></span> THE OUTPOST WORKSPACE <span>Desktop</span></div>
+          <a href="assets/screenshots/dashboard-desktop.png" target="_blank" rel="noopener" aria-label="Open full-size Outpost desktop screenshot (new tab)">
+            <img src="assets/screenshots/dashboard-desktop.png" width="1600" height="1200" alt="Outpost dashboard with host health gauges, grouped sidebar navigation and six sample instances" fetchpriority="high" />
+          </a>
+          <figcaption>The redesigned dashboard. Actual UI, illustrative data. <a href="#screenshots">Take a closer look ?</a></figcaption>
         </figure>
       </section>
 
@@ -202,6 +148,33 @@
           <rect x="14.4" y="20" width="3.2" height="6.5" rx="1.6" fill="#0c0f0a" />
         </symbol>
       </svg>
+
+      <!-- ============ Project overview ============ -->
+      <section class="container section" id="overview" aria-labelledby="overview-title">
+        <div class="overview-heading">
+          <p class="section-kicker">A HOME FOR YOUR SELF-HOSTED STACK</p>
+          <h2 id="overview-title">From first install to everyday operations.</h2>
+          <p class="lead">Outpost brings games, services and the tools to run them into one workspace. Start on a single machine, give others access to the instances they need, and connect more Outpost hosts as your setup grows.</p>
+        </div>
+        <div class="grid grid-3 overview-cards">
+          <article class="ui-card"><span class="overview-number">01 / DEPLOY</span><h3 class="ui-card-title">Choose what you want to run</h3><p>Install Minecraft or Steam dedicated servers, launch an app from the catalog, use a Docker or Podman image, or configure a custom process. Set ports, environment variables and resource limits for each instance.</p></article>
+          <article class="ui-card"><span class="overview-number">02 / OPERATE</span><h3 class="ui-card-title">See the whole host</h3><p>Check CPU, memory, storage, network and disk activity alongside instance status. Search by name, game or port, filter by category or running state, and switch between list, grid and box views.</p></article>
+          <article class="ui-card"><span class="overview-number">03 / MAINTAIN</span><h3 class="ui-card-title">Build a repeatable routine</h3><p>Follow live consoles, manage files, schedule restarts and snapshots, and configure off-site backups. Use roles, per-instance permissions, two-factor sign-in and audit history when sharing the panel.</p></article>
+        </div>
+        <div class="project-details ui-card">
+          <div><p class="section-kicker">BUILT TO RUN ON YOUR HARDWARE</p><h3 class="ui-card-title">A web interface, a local service, your data.</h3><p>The React and TypeScript frontend talks to a Node.js backend, with built-in SQLite for panel data. Container workloads use Docker or Podman; game servers use the runtime their platform needs.</p></div>
+          <dl class="project-facts"><div><dt>Panel runtime</dt><dd>Node.js 22.5+ ? 24 recommended</dd></div><div><dt>Host platforms</dt><dd>Linux, Windows and macOS</dd></div><div><dt>Platform requirements</dt><dd>Linux for bubblewrap sandboxing and systemd resource enforcement. Java, Steam libraries or Wine as needed by the game.</dd></div><div><dt>Project &amp; documentation</dt><dd><a href="https://github.com/niruxx/outpost">Browse the source and setup guides ?</a></dd></div></dl>
+        </div>
+      </section>
+
+      <section class="container section" id="screenshots" aria-labelledby="screenshots-title">
+        <div class="overview-heading"><p class="section-kicker">A CLOSER LOOK</p><h2 id="screenshots-title">One workspace. Room for everything.</h2><p class="lead">Soft tonal surfaces, grouped navigation and prominent actions keep host health and instance controls within reach. The dashboard adapts from a desktop workspace to stacked cards and a navigation drawer on mobile.</p></div>
+        <div class="screenshot-grid">
+          <figure class="product-shot"><a href="assets/screenshots/dashboard-desktop.png" target="_blank" rel="noopener" aria-label="Open full-size desktop screenshot (new tab)"><img src="assets/screenshots/dashboard-desktop.png" width="1600" height="1200" alt="Desktop Outpost workspace showing CPU, memory, storage, throughput and searchable instance cards" loading="lazy" /></a><figcaption><b>Desktop workspace</b>Host overview, searchable instances and quick start, stop and restart controls.</figcaption></figure>
+          <figure class="product-shot mobile-shot"><a href="assets/screenshots/dashboard-mobile.png" target="_blank" rel="noopener" aria-label="Open full-size mobile screenshot (new tab)"><img src="assets/screenshots/dashboard-mobile.png" width="480" height="1400" alt="Mobile Outpost dashboard with vertically stacked host metrics and a menu button" loading="lazy" /></a><figcaption><b>A dashboard that travels</b>Check your host from a smaller screen.</figcaption></figure>
+        </div>
+        <p class="screenshot-note">Actual Outpost UI captures from the project documentation, with illustrative host metrics and sample instances. Select an image to view it full size. Screenshots show the default theme; explore all five themes in the interactive demo below.</p>
+      </section>
 
       <!-- ============ Live demo ============ -->
       <section class="container section" id="demo">
@@ -264,6 +237,7 @@
           </div>
           <div class="ui-window-body">
             <ol class="changelog">
+              <li class="ui-card change"><span class="change-date">Interface refresh</span><div><h3 class="ui-card-title">A clearer view of your workspace</h3><p>The Material Design 3 Expressive-inspired dashboard brings host health, searchable instances, category and status filters, and list, grid and box layouts together. Grouped navigation separates workspace tools from administration. <a href="#screenshots">See the updated interface ?</a></p></div></li>
               <li class="ui-card change">
                 <span class="change-date">Oct 20, 2026</span>
                 <div>
@@ -856,6 +830,8 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
           <div class="ui-window-body">
             <h3 class="sub-title">Recently shipped</h3>
             <ul class="roadmap">
+              <li class="done">Redesigned dashboard with search, filters and list/grid/box views</li>
+              <li class="done">Minecraft proxies: Velocity, BungeeCord and Waterfall</li>
               <li class="done">Counter-Strike 2 tab and one-click CS2 plugins</li>
               <li class="done">Lighter UI with a <i>Reduce effects</i> switch</li>
               <li class="done">Modded Minecraft, modpacks, Mohist and SpongeForge</li>
@@ -863,9 +839,8 @@ pm2 save &amp;&amp; pm2 startup</code></pre>
               <li class="done">Wine, Steam Workshop and Black Ops III</li>
               <li class="done">SFTP, off-site backups, databases, resource limits and API keys</li>
             </ul>
-            <h3 class="sub-title">Coming next</h3>
+            <h3 class="sub-title">Future work</h3>
             <ul class="roadmap">
-              <li>Proxy servers: Velocity, BungeeCord and Waterfall networks</li>
               <li>CurseForge modpacks (server packs)</li>
               <li>Per-user Steam accounts with Steam Guard</li>
               <li>Password reset by email, and Discord / Google / LDAP sign-in</li>

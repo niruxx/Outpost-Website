@@ -12,6 +12,7 @@ assets/styles.css  tokens, components, the five themes and their wallpapers
 assets/app.js      theme picker, wallpaper toggle, install tabs, copy buttons
 assets/demo.js     the live demo: a simulated panel that runs entirely in the browser
 assets/demo.css    styles for the live demo (badges, console, dialog, toasts per theme)
+assets/screenshots/ current desktop and mobile UI captures from Outpost docs
 favicon.svg        the Outpost watchtower mark
 .nojekyll          tells GitHub Pages to serve the files as-is
 ```
@@ -34,6 +35,8 @@ To link to a specific theme, add `?theme=` with one of `outpost`, `xp`, `minecra
 
 ## Keeping it in sync
 
-The content currently reflects Outpost up to commit `f7fa622` (Oct 20, 2026). When new commits land, add them to the **What's new** section, tag new features with `<span class="new-tag">New</span>`, and drop the tags from features that are no longer recent.
+The overview and screenshots reflect the local Outpost documentation at commit `426ddc5` (reviewed October 28, 2026). The desktop and mobile PNGs in `assets/screenshots/` are actual UI captures from Outpost's `docs/screenshots/`, with illustrative metrics and sample instances. They are static images; the separate interactive demo remains a browser-only simulation.
+
+When refreshing the site, review the project's README and implemented features, copy updated desktop and mobile captures into `assets/screenshots/`, and update image dimensions and alt text if the captures change. Keep historical changelog dates intact and move shipped work out of the future-work list.
 
 When Outpost changes a theme, copy the matching token block and component rules from `web/src/index.css` into `assets/styles.css`. If a theme is added, also add its entry to `THEMES` in `assets/app.js` and to the id list in the inline script in `index.html`.
